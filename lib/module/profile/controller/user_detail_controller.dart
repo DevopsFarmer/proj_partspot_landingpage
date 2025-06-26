@@ -3,6 +3,7 @@ import 'package:partyspot/module/login/data/models/login_response_model.dart';
 import 'package:partyspot/module/login/domain/repositories/auth_repository.dart';
 import 'package:partyspot/networking/model/error_response_model.dart';
 import 'package:partyspot/utils/classes/base_controller.dart';
+import 'package:partyspot/utils/classes/user_controller.dart';
 import 'package:partyspot/utils/constants/service_const.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/loader.dart';
@@ -10,13 +11,14 @@ import 'package:partyspot/utils/widgets/snackbars.dart';
 
 class UserDetailController extends BaseController {
   final AuthRepository _loginRepository = locator<AuthRepository>();
+  final UserController _userController = Get.find<UserController>();
 
   String? fullName;
   String? email;
   String? profilePic;
   int? phoneNumber;
 
-  LoginResponse? loginResponse;
+  User? user;
 
   final Rxn<String?> _countryCode = Rxn<String>('91');
   String? get countryCode => _countryCode.value;
@@ -83,14 +85,14 @@ class UserDetailController extends BaseController {
   Future<void> onGetUserDetail() async {
     try {
       setBusy(true);
-      final res = await _loginRepository.userDetail();
-      loginResponse = res;
-      fullName = res?.data?.user?.fullName;
-      email = res?.data?.user?.email;
-      selectedDate = res?.data?.user?.dob;
-      countryCode = res?.data?.user?.code;
-      gender = res?.data?.user?.gender;
-      phoneNumber = res?.data?.user?.phone;
+      final res = await _userController.getMyDetails();
+      user = res;
+      fullName = user?.fullName;
+      email = user?.email;
+      selectedDate = user?.dob;
+      countryCode = user?.code;
+      gender = user?.gender;
+      phoneNumber = user?.phone;
     } on ErrorResponse catch (e) {
       setErrorMessage(e.message);
     } catch (e) {

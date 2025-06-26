@@ -7,18 +7,26 @@ import 'package:partyspot/utils/constants/service_const.dart';
 import 'package:partyspot/utils/services/storage_service.dart';
 
 class UserController extends BaseController {
+
+
   final AuthRepository _loginRepository = locator<AuthRepository>();
   final StorageService _storageService = locator<StorageService>();
 
   User? userData;
 
+  @override
+  void onInit() {
+    super.onInit();
+    getMyDetails();
+  }
   Future<User?> getMyDetails() async {
     try {
       setBusy(true);
       final accessToken = await _storageService.accessToken;
       if(accessToken.isNotEmpty){
         final res =  await _loginRepository.userDetail();
-        return res?.data?.user;
+        userData = res?.data?.user;
+        return userData ;
       }else{
         return null;
       }

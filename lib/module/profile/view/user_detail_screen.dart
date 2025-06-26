@@ -95,6 +95,7 @@ class UserDetailScreen extends StatelessWidget {
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -190,9 +191,7 @@ class UserDetailScreen extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       if (!(userDetailController
-                              .loginResponse
-                              ?.data
-                              ?.user
+                              .user
                               ?.isNumberVerified ??
                           false)) {
                         showCountryPicker(

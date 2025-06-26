@@ -30,8 +30,8 @@ class SplashController extends BaseController {
               Get.toNamed(Routes.appEntryScreen);
             }
           } else {
-            _storageService.clearSession();
             Get.offAndToNamed(Routes.signUpScreen);
+            await _storageService.clearSession();
           }
         } else {
           Get.toNamed(Routes.loginScreen);
