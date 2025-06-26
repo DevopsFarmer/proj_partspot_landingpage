@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:partyspot/firebase_options.dart';
+import 'package:partyspot/module/bookings/data/repositories/my_booking_repository_impl.dart';
+import 'package:partyspot/module/bookings/domain/repositories/my_booking_repository.dart';
 import 'package:partyspot/module/home/data/repositories/home_repository_impl.dart';
 import 'package:partyspot/module/home/domain/repositories/home_repository.dart';
 import 'package:partyspot/module/login/data/auth_repository_impl.dart';
@@ -14,8 +16,6 @@ import 'package:partyspot/utils/classes/user_controller.dart';
 import 'package:partyspot/utils/constants/service_const.dart';
 import 'package:partyspot/utils/services/env_service.dart';
 import 'package:partyspot/utils/services/storage_service.dart';
-
-import 'package:partyspot/utils/theme/light_theme.dart';
 
 import 'networking/dio_injector.dart';
 
@@ -36,6 +36,7 @@ _setupRepo(){
   locator.registerLazySingleton<AuthRepository>(()=>AuthRepositoryImpl());
   locator.registerLazySingleton<HomeRepository>(()=>HomeRepositoryImpl());
   locator.registerLazySingleton<PlanEventRepository>(()=>PlanEventRepositoryImpl());
+  locator.registerLazySingleton<MyBookingRepository>(()=>MyBookingRepositoryImpl());
 }
 
 class MyApp extends StatelessWidget {
@@ -44,13 +45,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final lightTheme = LightTheme();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashScreen,
       getPages: AppRoutes.getRoutes(),
       title: 'Party Spot',
-      // theme: lightTheme.themeData(context),
     );
   }
 }

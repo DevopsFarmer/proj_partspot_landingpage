@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:partyspot/module/app_entry/controller/app_entry_controller.dart';
-import 'package:partyspot/module/bookings/view/booking_bottom_sheet.dart';
-import 'package:partyspot/module/bookings/view/widgets/doc_row_card.dart';
-import 'package:partyspot/module/bookings/view/widgets/my_plan_header.dart';
+import 'package:partyspot/module/bookings/presentation/view/booking_bottom_sheet.dart';
+
 import 'package:partyspot/module/explore/view/explore_screen.dart';
 import 'package:partyspot/module/home/presentation/view/home_screen.dart';
 import 'package:partyspot/module/party_spot_vip/view/vip_screen.dart';
-import 'package:partyspot/module/representative/view/representative_screen.dart';
 import 'package:partyspot/module/settings/view/settings_screen.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart' show AppColor;
 import 'package:partyspot/utils/constants/icon_constants.dart';
-import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
-import 'package:partyspot/utils/widgets/buttons.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
+
+import '../../bookings/presentation/view/widgets/my_plan_header.dart' show MyPlanHeader;
 
 class AppEntryScreen extends StatelessWidget {
   AppEntryScreen({super.key});

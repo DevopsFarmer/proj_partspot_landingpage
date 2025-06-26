@@ -15,4 +15,5 @@ class ApiUrl {
   static const carousel = '/admin/carousel';
   static const fileUpload = '/admin/file-upload';
   static const createEventRequest = '/users/create-event-request';
+  static const myBookings = '/users/my-bookings';
 }

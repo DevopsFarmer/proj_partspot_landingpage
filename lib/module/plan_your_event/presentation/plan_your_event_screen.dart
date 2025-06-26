@@ -302,7 +302,7 @@ class PlanYourEventScreen extends StatelessWidget {
               AppButton(StringConsts.submit, onPressed: (){
                 planAEventController.submit(
                   (bookingData) {
-                    Get.toNamed(Routes.representativeScreen,arguments: {RoutesArgument.bookingData: bookingData});
+                    Get.toNamed(Routes.representativeScreen,arguments: {RoutesArgument.assignedAgent: bookingData?.assignedAgent});
                   },
                 );
               },backgroundColor: AppColor.violet,),

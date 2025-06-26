@@ -24,7 +24,10 @@ class PopularEventsList extends StatelessWidget {
           const SizedBox(height: 8),
           Column(
             children: List.generate(13, (index) {
-              return EventItem();
+              return EventItem(
+                title: "EDM SUNDAY",
+                desc: "The Blue Dot Cafe",
+              );
             }),
           ),
         ],

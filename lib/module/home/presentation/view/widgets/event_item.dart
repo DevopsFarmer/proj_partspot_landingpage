@@ -6,7 +6,10 @@ import 'package:partyspot/utils/widgets/custom_image_asset.dart';
 
 class EventItem extends StatelessWidget {
   final Function()? onTap;
-  const EventItem({super.key,this.onTap});
+  final String? title;
+  final String? desc;
+  final String? image;
+  const EventItem({super.key,this.onTap,required this.title,required this.desc,this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class EventItem extends StatelessWidget {
               children: [
                 CustomImageAsset(
                   fit: BoxFit.fitWidth,
-                  image: AppImages.popularEventImage1,
+                  image: image ?? AppImages.popularEventImage1,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -36,13 +39,13 @@ class EventItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "EDM SUNDAY",
+                            title ?? '',
                             style: AppTextStyles.get16BoldTextStyle(
                               color: AppColor.whiteColor,
                             ),
                           ),
                           Text(
-                            "The Blue Dot Cafe",
+                            desc ?? '',
                             style: AppTextStyles.get12MediumTextStyle(
                               color: AppColor.whiteColor,
                             ),

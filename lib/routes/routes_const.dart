@@ -42,6 +42,6 @@ class RoutesArgument {
   static const venueTypes = 'venueTypes';
   static const foodPreferences = 'foodPreferences';
   static const eventType = 'eventType';
-  static const bookingData = 'bookingData';
+  static const assignedAgent = 'assignedAgent';
   static const fromEdit = 'fromEdit';
 }

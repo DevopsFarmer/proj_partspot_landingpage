@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:partyspot/module/bookings/view/widgets/doc_row_card.dart';
+import 'package:partyspot/module/bookings/presentation/view/widgets/doc_row_card.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';

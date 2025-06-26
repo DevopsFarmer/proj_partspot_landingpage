@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:partyspot/module/app_entry/binding/app_entry_binding.dart';
 import 'package:partyspot/module/app_entry/presentation/app_entry_screen.dart';
-import 'package:partyspot/module/bookings/binding/booking_binding.dart';
-import 'package:partyspot/module/bookings/view/booking_screen.dart';
+import 'package:partyspot/module/bookings/presentation/binding/booking_binding.dart';
+import 'package:partyspot/module/bookings/presentation/view/booking_screen.dart';
 import 'package:partyspot/module/curated_events_list/presentation/curated_events_list_screen.dart';
 import 'package:partyspot/module/event_info/presentation/curated_event_info_screen.dart';
 import 'package:partyspot/module/home/data/models/events_meta.dart';
@@ -152,8 +152,8 @@ class AppRoutes {
         name: Routes.representativeScreen,
         transition: Transition.circularReveal,
         page: () {
-          final Booking? bookingData = Get.arguments?[RoutesArgument.bookingData] ?? [];
-          return  RepresentativeScreen(bookingData: bookingData);
+          final AssignedAgent? assignedAgent = Get.arguments?[RoutesArgument.assignedAgent] ?? [];
+          return  RepresentativeScreen(assignedAgent: assignedAgent);
         },
         binding: RepresentativeBinding(),
       ),

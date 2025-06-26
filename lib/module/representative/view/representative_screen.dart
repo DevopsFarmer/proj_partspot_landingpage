@@ -11,8 +11,8 @@ import 'package:partyspot/utils/widgets/snackbars.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RepresentativeScreen extends StatelessWidget {
-  final Booking? bookingData;
-  const RepresentativeScreen({super.key, this.bookingData});
+  final AssignedAgent? assignedAgent;
+  const RepresentativeScreen({super.key, this.assignedAgent});
 
   @override
   Widget build(BuildContext context) {
@@ -76,19 +76,19 @@ class RepresentativeScreen extends StatelessWidget {
                                   CustomNetworkImage(
                                     width: 100,
                                     height: 100,
-                                    imageUrl: bookingData?.assignedAgent?.profilePictureUrl,
+                                    imageUrl: assignedAgent?.profilePictureUrl,
                                     borderRadius: BorderRadius.circular(100),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Text(
-                                      bookingData?.assignedAgent?.fullName ?? '',
+                                      assignedAgent?.fullName ?? '',
                                       style: AppTextStyles.get20BoldTextStyle(),
                                     ),
                                   ),
 
                                   Text(
-                                    bookingData?.assignedAgent?.designation ?? '',
+                                    assignedAgent?.designation ?? '',
                                     style: AppTextStyles.get12RegularTextStyle(
                                       color: AppColor.colorB1B1B1,
                                     ),
@@ -108,7 +108,7 @@ class RepresentativeScreen extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      bookingData?.assignedAgent?.about ?? '',
+                                      assignedAgent?.about ?? '',
                                       style: AppTextStyles.get12RegularTextStyle(
                                         color: AppColor.colorB1B1B1,
                                       ),
@@ -125,7 +125,7 @@ class RepresentativeScreen extends StatelessWidget {
                           child: AppButton(
                             StringConsts.getOnCall,
                             onPressed: () {
-                              makePhoneCall('${bookingData?.assignedAgent?.code ?? ''}${bookingData?.assignedAgent?.phone ?? ''}');
+                              makePhoneCall('${assignedAgent?.code ?? ''}${assignedAgent?.phone ?? ''}');
                             },
                             height: 50,
                             padding: const EdgeInsets.symmetric(vertical: 12),
@@ -139,7 +139,7 @@ class RepresentativeScreen extends StatelessWidget {
                         AppButton(
                           StringConsts.connectOnWhatsapp,
                           onPressed: () {
-                            openWhatsApp('${bookingData?.assignedAgent?.code ?? ''}${bookingData?.assignedAgent?.phone ?? ''}');
+                            openWhatsApp('${assignedAgent?.code ?? ''}${assignedAgent?.phone ?? ''}');
                           },
                           height: 50,
                           padding: const EdgeInsets.symmetric(vertical: 12),

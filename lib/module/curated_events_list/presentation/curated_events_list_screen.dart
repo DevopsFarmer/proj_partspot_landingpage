@@ -66,6 +66,8 @@ class CuratedEventsListScreen extends StatelessWidget {
                   },
                   itemBuilder: (context,index){
                     return EventItem(
+                      title: "EDM SUNDAY",
+                      desc: "The Blue Dot Cafe",
                       onTap: (){
                         Get.toNamed(Routes.curatedEventInfoScreen);
                       },
