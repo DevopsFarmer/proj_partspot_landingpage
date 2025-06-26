@@ -302,6 +302,7 @@ class PlanYourEventScreen extends StatelessWidget {
               AppButton(StringConsts.submit, onPressed: (){
                 planAEventController.submit(
                   (bookingData) {
+                    Get.until((route) => route.settings.name == Routes.appEntryScreen);
                     Get.toNamed(Routes.representativeScreen,arguments: {RoutesArgument.assignedAgent: bookingData?.assignedAgent});
                   },
                 );

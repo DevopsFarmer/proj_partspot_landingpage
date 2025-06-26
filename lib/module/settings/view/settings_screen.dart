@@ -25,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
                     flex: 8,
                     child: SettingsInfo(onNotificationTap: () {}),
                   ),
-                  Expanded(flex: 12, child: const SettingsOptions()),
+                  Expanded(flex: 12, child:  SettingsOptions()),
                 ],
               ),
 
