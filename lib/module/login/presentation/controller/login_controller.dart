@@ -64,11 +64,11 @@ class LoginController extends BaseController {
     return googleUser?.authentication;
   }
 
-  Future<void> onPhoneLogin(String? code, int? phone,{void Function()? onSuccess}) async {
+  Future<void> onPhoneLogin(String? code, int? phone,{void Function(String? otp)? onSuccess}) async {
     try {
       FullScreenLoading.show();
-      await _loginRepository.phoneLogin(code: code,phoneNumber: phone);
-      onSuccess?.call();
+      final res = await _loginRepository.phoneLogin(code: code,phoneNumber: phone);
+      onSuccess?.call(res?.data?.otp);
     } on ErrorResponse catch (e) {
       setErrorMessage(e.message);
     } catch (e) {

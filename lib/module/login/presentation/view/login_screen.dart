@@ -11,6 +11,7 @@ import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
+import 'package:partyspot/utils/widgets/snackbars.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController numberController = TextEditingController();
@@ -76,8 +77,9 @@ class LoginScreen extends StatelessWidget {
                         backgroundColor: AppColor.buttonOrange,
                         margin: const EdgeInsets.symmetric(vertical: 8),
                         onPressed: () {
-                          loginController.onPhoneLogin(selectedCountryCode,int.tryParse(numberController.text) ?? 0,onSuccess: (){
+                          loginController.onPhoneLogin(selectedCountryCode,int.tryParse(numberController.text) ?? 0,onSuccess: (otp){
                             Get.offNamed(Routes.otpScreen,arguments: {RoutesArgument.phoneNumber: num.tryParse(numberController.text),RoutesArgument.code: selectedCountryCode});
+                            showSnackBar(text: otp,duration: Duration(seconds: 5));
                           });
                         },
                       ),

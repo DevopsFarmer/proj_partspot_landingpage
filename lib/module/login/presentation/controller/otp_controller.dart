@@ -86,11 +86,11 @@ class OtpController extends BaseController {
     return FirebaseMessaging.instance.getToken();
   }
 
-  Future<void> onResendOtp(String? code, int? phone,{void Function(String? msg)? onSuccess}) async {
+  Future<void> onResendOtp(String? code, int? phone,{void Function(String? otp)? onSuccess}) async {
     try {
       FullScreenLoading.show();
       final res = await _loginRepository.resendOtp(code: code,phoneNumber: phone);
-      onSuccess?.call(res?.message);
+      onSuccess?.call(res?.data?.otp);
       setSuccessMessage(res?.message);
       startTimer();
     } on ErrorResponse catch (e) {

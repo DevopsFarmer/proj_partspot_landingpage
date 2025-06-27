@@ -9,6 +9,7 @@ import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
+import 'package:partyspot/utils/widgets/snackbars.dart';
 
 class OtpScreen extends StatelessWidget {
   final int? phoneNumber;
@@ -77,6 +78,7 @@ class OtpScreen extends StatelessWidget {
                             phoneNumber,
                             onSuccess: (val) {
                               // showSnackBar(text: val);
+                              showSnackBar(text: val,duration: Duration(seconds: 5));
                             },
                           );
                         },

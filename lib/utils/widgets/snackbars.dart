@@ -6,7 +6,7 @@ import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/widgets/text_view.dart';
 
 
-void showSnackBar({required String? text, Color? color, Color? textColor, bool? isError}) {
+void showSnackBar({required String? text, Color? color, Color? textColor, bool? isError,Duration? duration}) {
 
 
   if(text == null || text.isEmpty){
@@ -16,9 +16,10 @@ void showSnackBar({required String? text, Color? color, Color? textColor, bool? 
     snackPosition: SnackPosition.BOTTOM,
     backgroundColor: color ?? (isError == true ? AppColor.greyColor : AppColor.primaryColor),
     borderRadius: 12,
+
     margin: const EdgeInsets.all(16),
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-    duration: const Duration(milliseconds: 1500),
+    duration: duration ?? const Duration(milliseconds: 1500),
     isDismissible: true,
     messageText: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
