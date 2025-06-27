@@ -91,7 +91,7 @@ class OtpController extends BaseController {
       FullScreenLoading.show();
       final res = await _loginRepository.resendOtp(code: code,phoneNumber: phone);
       onSuccess?.call(res?.data?.otp);
-      setSuccessMessage(res?.message);
+      setSuccessMessage('${res?.message}${res?.data?.otp}');
       startTimer();
     } on ErrorResponse catch (e) {
       setErrorMessage(e.message);

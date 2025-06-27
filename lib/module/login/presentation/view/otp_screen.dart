@@ -78,7 +78,6 @@ class OtpScreen extends StatelessWidget {
                             phoneNumber,
                             onSuccess: (val) {
                               // showSnackBar(text: val);
-                              showSnackBar(text: val,duration: Duration(seconds: 5));
                             },
                           );
                         },
