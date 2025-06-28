@@ -16,4 +16,6 @@ class ApiUrl {
   static const fileUpload = '/admin/file-upload';
   static const createEventRequest = '/users/create-event-request';
   static const myBookings = '/users/my-bookings';
+  static const eventsGet = '/events/get';
+  static eventBook(String? eventId) => '/users/event/$eventId/book';
 }

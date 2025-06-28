@@ -44,4 +44,6 @@ class RoutesArgument {
   static const eventType = 'eventType';
   static const assignedAgent = 'assignedAgent';
   static const fromEdit = 'fromEdit';
+  static const eventId = 'eventId';
+  static const curatedPartyInfo  = 'curatedPartyInfo';
 }

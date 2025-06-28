@@ -3,7 +3,9 @@ import 'package:partyspot/module/app_entry/binding/app_entry_binding.dart';
 import 'package:partyspot/module/app_entry/presentation/app_entry_screen.dart';
 import 'package:partyspot/module/bookings/presentation/binding/booking_binding.dart';
 import 'package:partyspot/module/bookings/presentation/view/booking_screen.dart';
-import 'package:partyspot/module/curated_events_list/presentation/curated_events_list_screen.dart';
+import 'package:partyspot/module/curated_events_list/data/models/curated_event_list_response.dart';
+import 'package:partyspot/module/curated_events_list/presentation/view/curated_events_list_screen.dart';
+import 'package:partyspot/module/event_info/binding/curated_event_info_binding.dart';
 import 'package:partyspot/module/event_info/presentation/curated_event_info_screen.dart';
 import 'package:partyspot/module/home/data/models/events_meta.dart';
 import 'package:partyspot/module/plan_a_wedding/data/models/plan_event_response.dart';
@@ -87,14 +89,20 @@ class AppRoutes {
       GetPage(
         name: Routes.curatedEventsListScreen,
         transition: Transition.circularReveal,
-        page: () => CuratedEventsListScreen(),
-        binding: ExploreBinding(),
+        page: () {
+          final String? eventId = Get.arguments?[RoutesArgument.eventId] ?? '';
+          return CuratedEventsListScreen(eventId: eventId);
+        },
+        // binding: CuratedEventListBinding(),
       ),
       GetPage(
         name: Routes.curatedEventInfoScreen,
         transition: Transition.circularReveal,
-        page: () => EventInfoScreen(),
-        binding: ExploreBinding(),
+        page: () {
+          final CuratedEventList? partyInfo = Get.arguments?[RoutesArgument.curatedPartyInfo];
+          return EventInfoScreen(curatedEventList: partyInfo);
+        },
+        binding: CuratedEventInfoBinding(),
       ),
 
       GetPage(

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:partyspot/module/curated_events_list/data/models/curated_event_list_response.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
+import 'package:partyspot/utils/widgets/custom_network_image.dart';
 
 class HostedAndPartnerBy extends StatelessWidget {
-  const HostedAndPartnerBy({super.key});
+  final EdBy? hostedBy;
+  final EdBy? partnerBy;
+  const HostedAndPartnerBy({super.key,this.hostedBy,this.partnerBy});
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +24,17 @@ class HostedAndPartnerBy extends StatelessWidget {
         children: [
           Text(StringConsts.hostedBy,style: AppTextStyles.get20BoldTextStyle()),
           const SizedBox(height: 14),
-          _buildAboutItem(text: "The Blue Dot Cafe",desc: "3rd ‘A’ road, near mega mart, Sardarpura, Jodhpur, (Raj.)."),
+          _buildAboutItem(text: hostedBy?.name,desc: hostedBy?.location,imageUrl: hostedBy?.image),
           const SizedBox(height: 24),
           Text(StringConsts.partneredBy,style: AppTextStyles.get20BoldTextStyle()),
           const SizedBox(height: 14),
-          _buildAboutItem(text: "The PartySpot by Partywalah",desc: "www.partywalah.in"),
+          _buildAboutItem(text: partnerBy?.name,desc: partnerBy?.location,imageUrl: partnerBy?.image),
         ],
       ),
     );
   }
 
-  _buildAboutItem({required String? text,String? desc}){
+  _buildAboutItem({required String? text,String? desc,String? imageUrl}){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -40,6 +44,10 @@ class HostedAndPartnerBy extends StatelessWidget {
           height: 48,
             decoration: BoxDecoration(
               color: AppColor.offWhiteColor,
+              borderRadius: BorderRadius.circular(10)
+            ),
+            child: CustomNetworkImage(
+              imageUrl: imageUrl,
               borderRadius: BorderRadius.circular(10)
             ),
           ),

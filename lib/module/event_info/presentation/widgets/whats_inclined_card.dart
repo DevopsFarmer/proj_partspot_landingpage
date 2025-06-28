@@ -6,7 +6,8 @@ import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 
 class WhatsInclinedCard extends StatelessWidget {
-  const WhatsInclinedCard({super.key});
+  final List<String?>? whatsIncluded;
+  const WhatsInclinedCard({super.key,this.whatsIncluded});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,11 @@ class WhatsInclinedCard extends StatelessWidget {
         children: [
           Text(StringConsts.whatsIncluded,style: AppTextStyles.get20BoldTextStyle()),
           const SizedBox(height: 10),
-          _buildAboutItem(text: "VIP entrance"),
-          _buildAboutItem(text: "Premium Valet parking"),
-          _buildAboutItem(text: "Immersive light show"),
-          _buildAboutItem(text: "Exclusive bar counter"),
-          _buildAboutItem(text: "Midnight Canapés"),
+          Column(
+            children: List.generate(whatsIncluded?.length ?? 0, (index){
+              return _buildAboutItem(text: whatsIncluded?[index]);
+            }),
+          )
         ],
       ),
     );

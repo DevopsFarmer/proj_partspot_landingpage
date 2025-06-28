@@ -6,8 +6,11 @@ import 'package:partyspot/utils/widgets/counter_widget/app_counter.dart';
 import 'package:partyspot/utils/widgets/counter_widget/app_counter_controller.dart';
 
 class BookYourTicketCard extends StatelessWidget {
-  BookYourTicketCard({super.key});
-  final controller = AppCounterController(lowerLimit: 2, initialValue: 3);
+  final num? price;
+  final ValueChanged<num?>? onCounterChanged;
+
+  BookYourTicketCard({super.key,this.price,this.onCounterChanged});
+  final controller = AppCounterController(lowerLimit: 1, initialValue: 1,maxLimit: 10);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class BookYourTicketCard extends StatelessWidget {
                   ],
                 )),
                 const SizedBox(width: 14),
-                AppCounter(controller: controller, onChanged: (val){}),
+                AppCounter(controller: controller, onChanged: onCounterChanged ?? (val){}),
               ],
             ),
           ),
@@ -46,7 +49,7 @@ class BookYourTicketCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(StringConsts.totalPrice,style: AppTextStyles.get14SemiBoldTextStyle()),
-              Text("₹ 499",style: AppTextStyles.get14SemiBoldTextStyle())
+              Text("₹ $price",style: AppTextStyles.get14SemiBoldTextStyle())
             ],
           )
         ],

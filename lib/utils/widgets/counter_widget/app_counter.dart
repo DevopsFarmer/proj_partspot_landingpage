@@ -6,12 +6,14 @@ import 'package:partyspot/utils/widgets/counter_widget/app_counter_controller.da
 
 class AppCounter extends StatelessWidget {
   final AppCounterController controller;
-  final ValueChanged<int> onChanged;
+  final ValueChanged<num?> onChanged;
+  final num? maxNum;
 
   const AppCounter({
     super.key,
     required this.controller,
     required this.onChanged,
+    this.maxNum
   });
 
   @override

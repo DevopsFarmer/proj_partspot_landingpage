@@ -45,7 +45,7 @@ class FeatureGrid extends StatelessWidget {
                       RoutesArgument.eventType: eventData?.eventType?[index],
                     });
                   }else if(eventData?.eventType?[index].name == 'curated parties'){
-                    Get.toNamed(Routes.curatedEventsListScreen);
+                    Get.toNamed(Routes.curatedEventsListScreen,arguments: {RoutesArgument.eventId: eventData?.eventType?[index].id});
                   }else if(eventData?.eventType?[index].name == 'multiple host'){
 
                   }

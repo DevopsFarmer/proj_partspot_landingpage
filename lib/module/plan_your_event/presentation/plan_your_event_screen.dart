@@ -38,7 +38,7 @@ class PlanYourEventScreen extends StatelessWidget {
                 onTap: ()async {
                   final date = await _selectDOB(context);
                   if(date != null){
-                    planAEventController.selectedDate = date;
+                    planAEventController.selectedStartDate = date;
                   }
                 },
                 child: Container(
@@ -59,12 +59,52 @@ class PlanYourEventScreen extends StatelessWidget {
                           Obx((){
                             return Row(
                               children: [
-                            Text(planAEventController.selectedDate != null
-                                ? DateFormat('dd/MM/yyyy').format(planAEventController.selectedDate ?? DateTime.now())
-                                : StringConsts.chooseDate,style: AppTextStyles.get16MediumTextStyle()),
+                            Text(planAEventController.selectedStartDate != null
+                                ? DateFormat('dd/MM/yyyy').format(planAEventController.selectedStartDate ?? DateTime.now())
+                                : StringConsts.chooseStartDate,style: AppTextStyles.get16MediumTextStyle()),
                                   Visibility(
-                                      visible: planAEventController.selectedDate == null,
+                                      visible: planAEventController.selectedStartDate == null,
                                       child: Text("*",style: AppTextStyles.get16MediumTextStyle(color: AppColor.redColor))),
+                              ],
+                            );
+
+                          }),
+                        ],
+                      ),
+                      CustomSvgPicture(iconPath: AppIcons.calendarIcon)
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 22),
+              GestureDetector(
+                onTap: ()async {
+                  final date = await _selectDOB(context);
+                  if(date != null){
+                    planAEventController.selectedEndDate = date;
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: AppColor.orangeColor,
+                      width: 2,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Obx((){
+                            return Row(
+                              children: [
+                            Text(planAEventController.selectedEndDate != null
+                                ? DateFormat('dd/MM/yyyy').format(planAEventController.selectedEndDate ?? DateTime.now())
+                                : StringConsts.chooseEndDate,style: AppTextStyles.get16MediumTextStyle()),
                               ],
                             );
 
@@ -150,7 +190,7 @@ class PlanYourEventScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     GetBuilder<PartyTypeSelectionController<Venue?>>(
-                        init: PartyTypeSelectionController<Venue?>(isMultiSelect: false),
+                        init: PartyTypeSelectionController<Venue?>(isMultiSelect: true),
                         tag: 'venue_type',
                         builder: (controller) {
                           return Obx(() => Wrap(
@@ -164,15 +204,6 @@ class PlanYourEventScreen extends StatelessWidget {
                                 borderRadius: 4,
                                 isSelected: isSelected,
                                 onTap: ()async{
-                                  if(item?.name?.contains(
-                                      'custom') ?? false){
-                                    final res = await showCustomVenueDialog(context,initialValue: item?.name);
-                                    if(res == null){
-                                      return;
-                                    }else{
-                                      planAEventController.updateVenueNameById(item?.id, res);
-                                    }
-                                  }
                                   controller.toggleSelection(item);
                                   planAEventController.selectedVenueTypes = controller.selectedItems;
                                 },
@@ -212,7 +243,7 @@ class PlanYourEventScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     GetBuilder<PartyTypeSelectionController<FoodPref?>>(
-                        init: PartyTypeSelectionController<FoodPref?>(isMultiSelect: false),
+                        init: PartyTypeSelectionController<FoodPref?>(isMultiSelect: true),
                         tag: 'food_preferences',
                         builder: (controller) {
                           return Obx(() => Wrap(

@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:partyspot/module/home/presentation/controller/home_controller.dart';
 import 'package:partyspot/module/home/presentation/view/widgets/banner_widget.dart';
 import 'package:partyspot/module/home/presentation/view/widgets/feature_grid.dart';
-import 'package:partyspot/module/home/presentation/view/widgets/party_sport_vip_home.dart';
-import 'package:partyspot/module/home/presentation/view/widgets/popular_events_list.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/icon_constants.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
@@ -51,9 +49,9 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   BannerWidget(),
                   FeatureGrid(eventData: homeController.eventMetaData),
-                  PopularEventsList(),
-                  PartySportVipHome(),
-                  SizedBox(height: 20),
+                  // PopularEventsList(),
+                  // PartySportVipHome(),
+                  // SizedBox(height: 20),
                 ],
               ),
             );

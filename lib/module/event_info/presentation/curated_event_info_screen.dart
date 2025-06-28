@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:partyspot/module/curated_events_list/data/models/curated_event_list_response.dart';
+import 'package:partyspot/module/event_info/controller/curated_event_info_controller.dart';
 import 'package:partyspot/module/event_info/presentation/widgets/about_event_card.dart';
 import 'package:partyspot/module/event_info/presentation/widgets/book_your_ticket_card.dart';
 import 'package:partyspot/module/event_info/presentation/widgets/entry_requirement_card.dart';
 import 'package:partyspot/module/event_info/presentation/widgets/hosted_and_partner_by.dart';
 import 'package:partyspot/module/event_info/presentation/widgets/whats_inclined_card.dart';
+import 'package:partyspot/routes/routes_const.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/app_size.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
@@ -12,12 +16,15 @@ import 'package:partyspot/utils/widgets/back_button.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
 import 'package:partyspot/utils/widgets/custom_image_asset.dart';
 
+import '../../plan_a_wedding/data/models/plan_event_response.dart';
+
 class EventInfoScreen extends StatelessWidget {
-  const EventInfoScreen({super.key});
+  final CuratedEventList? curatedEventList;
+  const EventInfoScreen({super.key,this.curatedEventList});
 
   @override
   Widget build(BuildContext context) {
-
+    final CuratedEventInfoController curatedEventInfoController = Get.find<CuratedEventInfoController>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColor.bgVioletColor,
@@ -46,9 +53,7 @@ class EventInfoScreen extends StatelessWidget {
                         Positioned(
                           top: 16,
                           left: 16,
-                          child: AppBackButton(
-          
-                          ),
+                          child: AppBackButton(),
                         ),
                         Positioned(
                           bottom: 22,
@@ -61,8 +66,8 @@ class EventInfoScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('EDM SUNDAY',style: AppTextStyles.get32BoldTextStyle(color: AppColor.whiteColor)),
-                                    Text('An exclusive nightclub takeover for you.',style: AppTextStyles.get14RegularTextStyle(color: AppColor.whiteColor)),
+                                    Text(curatedEventList?.name?.name ?? '',style: AppTextStyles.get32BoldTextStyle(color: AppColor.whiteColor)),
+                                    Text(curatedEventList?.location ?? '',style: AppTextStyles.get14RegularTextStyle(color: AppColor.whiteColor)),
                                   ],
                                 ),
                               ),
@@ -73,7 +78,7 @@ class EventInfoScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10)
                                 ),
                                 padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 24),
-                                child: Text('₹499',style: AppTextStyles.get30BoldTextStyle(color: AppColor.whiteColor)),
+                                child: Text('₹${curatedEventList?.price}',style: AppTextStyles.get30BoldTextStyle(color: AppColor.whiteColor)),
                               )
                             ],
                           ),
@@ -84,15 +89,38 @@ class EventInfoScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              AboutEventCard(),
-              WhatsInclinedCard(),
+              AboutEventCard(
+                date: curatedEventList?.startDate,
+                guest: curatedEventList?.numberOfGuests,
+                location: curatedEventList?.location,
+                tags: curatedEventList?.tags,
+              ),
+              WhatsInclinedCard(
+                whatsIncluded: curatedEventList?.whatsIncluded,
+              ),
               EntryRequirementCard(),
-              HostedAndPartnerBy(),
-              BookYourTicketCard(),
+              HostedAndPartnerBy(
+                hostedBy: curatedEventList?.hostedBy,
+                partnerBy: curatedEventList?.partneredBy,
+              ),
+              BookYourTicketCard(
+                price: curatedEventList?.price,
+                onCounterChanged: (val){
+                  curatedEventInfoController.noOfGuest = val ?? 1;
+                },
+              ),
               const SizedBox(height: 6),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: AppButton(StringConsts.bookNow, onPressed: (){},backgroundColor: AppColor.violet),
+                child: AppButton(StringConsts.bookNow, onPressed: (){
+                  curatedEventInfoController.bookEvent(
+                    eventId: curatedEventList?.id,
+                    onSuccess: (agent)async{
+                      Get.until((route) => route.settings.name == Routes.appEntryScreen);
+                      Get.toNamed(Routes.representativeScreen,arguments: {RoutesArgument.assignedAgent: AssignedAgent.fromJson(agent?.toJson() ?? {})});
+                    }
+                  );
+                },backgroundColor: AppColor.violet),
               ),
               const SizedBox(height: 24,),
             ],

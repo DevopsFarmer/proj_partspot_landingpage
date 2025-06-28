@@ -28,7 +28,8 @@ class StringConsts {
   static const selectTheTypeOfWedding =
       "Select the types of wedding event you want to organize.";
   static const planYourEvents = "Plan Your Events";
-  static const chooseDate = "Choose date";
+  static const chooseStartDate = "Choose start date";
+  static const chooseEndDate = "Choose end date";
   static const numberOfGuests = "Number of Guests";
   static const custom = "Custom";
   static const venueType = "Venue Type";
@@ -78,6 +79,7 @@ class StringConsts {
   static const pleaseUploadPdf = 'Please select pdf';
   static const invalidPhoneNumber = 'Invalid phone number';
   static const couldNotOpenPhoneDialer = 'Could not open phone dialer';
+  static const endDateCannotBeBeforeStartDate = 'The end date cannot be before the start date';
 
   // -------------
 

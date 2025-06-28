@@ -23,9 +23,13 @@ class PlanAEventController extends BaseController{
 
   final PlanEventRepository _planEventRepository = locator<PlanEventRepository>();
 
-  final Rxn<DateTime?> _selectedDate = Rxn<DateTime?>();
-  DateTime? get selectedDate => _selectedDate.value;
-  set selectedDate(DateTime? val) => _selectedDate.value = val;
+  final Rxn<DateTime?> _selectedStartDate = Rxn<DateTime?>();
+  DateTime? get selectedStartDate => _selectedStartDate.value;
+  set selectedStartDate(DateTime? val) => _selectedStartDate.value = val;
+
+  final Rxn<DateTime?> _selectedEndDate = Rxn<DateTime?>();
+  DateTime? get selectedEndDate => _selectedEndDate.value;
+  set selectedEndDate(DateTime? val) => _selectedEndDate.value = val;
 
   final Rx<int?> _noOfGuest = Rxn<int>(100);
   int? get noOfGuest => _noOfGuest.value;
@@ -51,20 +55,7 @@ class PlanAEventController extends BaseController{
   String? get specialReqUrl => _specialReqUrl.value;
   set specialReqUrl(String? val) => _specialReqUrl.value = val;
 
-  void updateVenueNameById(String? id, String? newName) {
-    final index = _selectedVenueTypes.indexWhere((venue) => venue?.id == id);
 
-    if (index != -1) {
-      final oldVenue = _selectedVenueTypes[index];
-
-      if (oldVenue != null) {
-        final updatedJson = oldVenue.toJson()
-          ..["name"] = newName;
-
-        _selectedVenueTypes[index] = Venue.fromJson(updatedJson);
-      }
-    }
-  }
 
   @override
   void onInit() {
@@ -111,7 +102,7 @@ class PlanAEventController extends BaseController{
   }
 
   Future<void> submit(Function(Booking? bookingData)? onSuccess)async{
-    if(selectedDate == null){
+    if(selectedStartDate == null){
       setErrorMessage(StringConsts.pleaseSelectDate);
     }else if(selectedVenueTypes.isEmpty){
       setErrorMessage(StringConsts.pleaseSelectVenue);
@@ -119,6 +110,8 @@ class PlanAEventController extends BaseController{
       setErrorMessage(StringConsts.pleaseSelectFoodPreference);
     }else if(file == null){
       setErrorMessage(StringConsts.pleaseUploadPdf);
+    }else if(selectedEndDate?.isBefore(selectedStartDate ?? DateTime.now()) ?? true){
+      setErrorMessage(StringConsts.endDateCannotBeBeforeStartDate);
     }else{
       try {
         FullScreenLoading.show();
@@ -126,7 +119,7 @@ class PlanAEventController extends BaseController{
         final PlanEventRequest planEventRequest = PlanEventRequest(
           foodPreferences:  List.generate(foodPreferences?.length ?? 0, (index) => Name(name: foodPreferences?[index]?.name,id: foodPreferences?[index]?.id)),
           venueType: List.generate(venueTypes?.length ?? 0, (index) => Name(name: venueTypes?[index]?.name,id: venueTypes?[index]?.id)),
-          startDate: selectedDate,
+          startDate: selectedStartDate,
           numberOfGuests: noOfGuest,
           specialRequirements: specialReqUrl,
           subType: List.generate(subTypes?.length ?? 0, (index) => Name(name: subTypes?[index]?.name,id: subTypes?[index]?.id)),
