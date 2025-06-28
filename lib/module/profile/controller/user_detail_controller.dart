@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:partyspot/module/login/data/models/login_response_model.dart';
 import 'package:partyspot/module/login/domain/repositories/auth_repository.dart';
@@ -18,6 +20,8 @@ class UserDetailController extends BaseController {
   String? profilePic;
   int? phoneNumber;
 
+  // File? userImage;
+
   User? user;
 
   final Rxn<String?> _countryCode = Rxn<String>('91');
@@ -36,6 +40,12 @@ class UserDetailController extends BaseController {
 
   bool get isTncAccepted => isTncAcceptedRx.value;
   set isTncAccepted(bool val) => isTncAcceptedRx.value = val;
+
+  final Rxn<File> userImageRx = Rxn<File>();
+  File? get userImage => userImageRx.value;
+  void setUserImage(File image) {
+    userImageRx.value = image;
+  }
 
   @override
   void onInit() {
@@ -65,6 +75,7 @@ class UserDetailController extends BaseController {
   Future<void> onUpdateProfile({void Function()? onSuccess}) async {
     try {
       FullScreenLoading.show();
+
       await _loginRepository.updateProfile(
         fullName: fullName,
         gender: gender,
@@ -72,7 +83,47 @@ class UserDetailController extends BaseController {
         dob: selectedDate?.toIso8601String(),
         email: email,
       );
+
+      final updatedUser = await _userController.getMyDetails();
+      user = updatedUser;
+      fullName = updatedUser?.fullName;
+      email = updatedUser?.email;
+      profilePic = updatedUser?.profilePictureUrl;
+      gender = updatedUser?.gender;
+      selectedDate = updatedUser?.dob;
+
+      _userController.userData = updatedUser;
+
+      print("Full name after update: $fullName");
+
       onSuccess?.call();
+    } on ErrorResponse catch (e) {
+      setErrorMessage(e.message);
+    } catch (e) {
+      setErrorMessage(StringConsts.unExpectedError);
+    } finally {
+      FullScreenLoading.hide();
+    }
+  }
+
+  Future<void> onUpdateProfilePic({void Function()? onSuccess}) async {
+    try {
+      FullScreenLoading.show();
+
+      // Upload file
+      final fileUploadResponse = await _loginRepository.uploadFile(
+        file: userImage,
+      );
+      final uploadedUrl = fileUploadResponse?.data?.url;
+
+      if (uploadedUrl != null && uploadedUrl.isNotEmpty) {
+        profilePic = uploadedUrl;
+
+        // Now update profile with new image URL
+        await onUpdateProfile(onSuccess: onSuccess);
+      } else {
+        setErrorMessage("Failed to get uploaded image URL.");
+      }
     } on ErrorResponse catch (e) {
       setErrorMessage(e.message);
     } catch (e) {

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:partyspot/module/profile/controller/user_detail_controller.dart';
 import 'package:partyspot/module/settings/view/widgets/profile_card.dart';
 import 'package:partyspot/module/settings/view/widgets/profile_img_circle.dart';
 import 'package:partyspot/module/settings/view/widgets/settings_info.dart';
@@ -12,9 +16,13 @@ import 'package:partyspot/utils/constants/string_consts.dart';
 // import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 
 class SettingsScreen extends StatelessWidget {
-   SettingsScreen({super.key});
+  SettingsScreen({super.key});
 
   final UserController _userController = Get.find<UserController>();
+
+  final UserDetailController userDetailController = Get.put(
+    UserDetailController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +37,7 @@ class SettingsScreen extends StatelessWidget {
                     flex: 8,
                     child: SettingsInfo(onNotificationTap: () {}),
                   ),
-                  Expanded(flex: 12, child:  SettingsOptions()),
+                  Expanded(flex: 12, child: SettingsOptions()),
                 ],
               ),
 
@@ -39,20 +47,89 @@ class SettingsScreen extends StatelessWidget {
                   clipBehavior: Clip.none,
                   alignment: Alignment.topCenter,
                   children: [
-                    ProfileCard(
-                      userName: _userController.userData?.fullName?.toUpperCase() ?? '',
-                      iconPath: AppIcons.crownIcon,
-                      title: StringConsts.beastCaps,
-                      subtitle: StringConsts.monthlySubs,
-                      buttonText: StringConsts.upgrade,
-                      onUpgradeTap: () {},
+                    Obx(
+                      () => ProfileCard(
+                        userName:
+                            _userController.userData?.fullName?.toUpperCase() ??
+                            '',
+                        iconPath: AppIcons.crownIcon,
+                        title: StringConsts.beastCaps,
+                        subtitle: StringConsts.monthlySubs,
+                        buttonText: StringConsts.upgrade,
+                        onUpgradeTap: () {},
+                      ),
                     ),
                     Positioned(
                       top: -70,
-                      child: ProfileImageStatus(
-                        imageUrl:
-                            "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                        percentage: 75,
+                      child: InkWell(
+                        onTap: () {
+                          Get.dialog(
+                            AlertDialog(
+                              title: Text("Upload Image"),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ListTile(
+                                    leading: Icon(Icons.camera_alt),
+                                    title: Text("Camera"),
+
+                                    onTap: () async {
+                                      final ImagePicker picker = ImagePicker();
+                                      final XFile? pickedFile = await picker
+                                          .pickImage(
+                                            source: ImageSource.camera,
+                                            imageQuality: 80,
+                                          );
+
+                                      if (pickedFile != null) {
+                                        File image = File(pickedFile.path);
+                                        userDetailController.setUserImage(
+                                          image,
+                                        );
+                                        await userDetailController
+                                            .onUpdateProfilePic();
+                                      }
+
+                                      Get.back();
+                                    },
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.photo),
+                                    title: Text("Gallery"),
+                                    onTap: () async {
+                                      final ImagePicker picker = ImagePicker();
+
+                                      final XFile? pickedFile = await picker
+                                          .pickImage(
+                                            source: ImageSource.gallery,
+                                            imageQuality: 80,
+                                          );
+
+                                      if (pickedFile != null) {
+                                        File image = File(pickedFile.path);
+                                        userDetailController.setUserImage(
+                                          image,
+                                        );
+                                        await userDetailController
+                                            .onUpdateProfilePic();
+                                      }
+                                      // Handle camera logic here
+                                      Get.back();
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                        child: Obx(() {
+                          return ProfileImageStatus(
+                            imageUrl:
+                                _userController.userData?.profilePictureUrl ??
+                                "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg",
+                            percentage: 75,
+                          );
+                        }),
                       ),
                     ),
                   ],
