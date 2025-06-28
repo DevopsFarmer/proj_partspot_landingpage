@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:partyspot/module/curated_events_list/data/models/curated_booked_response.dart';
 import 'package:partyspot/module/curated_events_list/domain/repositories/curated_events_list_repository.dart';
 import 'package:partyspot/networking/model/error_response_model.dart';
-import 'package:partyspot/utils/alert_dialogs/loader_dialog.dart';
 import 'package:partyspot/utils/classes/base_controller.dart';
 import 'package:partyspot/utils/constants/service_const.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
+import 'package:partyspot/utils/widgets/loader.dart';
 import 'package:partyspot/utils/widgets/snackbars.dart';
 
 class CuratedEventInfoController extends BaseController {
@@ -31,16 +31,16 @@ class CuratedEventInfoController extends BaseController {
 
   Future<void> bookEvent({String? eventId,Function(AssignedAgent? assignedAgent)? onSuccess}) async {
     try {
-      showProgressLoader();
+      FullScreenLoading.show();
       final res = await _curatedEventsListRepository.bookCuratedParty(noOfGuest: noOfGuest,eventId: eventId);
-      cancelDialog();
+      FullScreenLoading.hide();
       onSuccess?.call(res?.booking?.assignedAgent);
     } on ErrorResponse catch (e) {
       setErrorMessage(e.message);
     } catch (e) {
       setErrorMessage(StringConsts.unExpectedError);
     } finally{
-      cancelDialog();
+      FullScreenLoading.hide();
     }
   }
 }
