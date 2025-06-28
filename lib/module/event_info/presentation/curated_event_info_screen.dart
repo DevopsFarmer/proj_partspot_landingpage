@@ -98,7 +98,9 @@ class EventInfoScreen extends StatelessWidget {
               WhatsInclinedCard(
                 whatsIncluded: curatedEventList?.whatsIncluded,
               ),
-              EntryRequirementCard(),
+              EntryRequirementCard(
+                entryRequirements: curatedEventList?.entryRequirements,
+              ),
               HostedAndPartnerBy(
                 hostedBy: curatedEventList?.hostedBy,
                 partnerBy: curatedEventList?.partneredBy,

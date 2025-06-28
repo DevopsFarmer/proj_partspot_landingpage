@@ -90,7 +90,7 @@ class CuratedEventList {
 
 class EntryRequirement {
   final String? title;
-  final List<dynamic>? list;
+  final List<String?>? list;
   final String? id;
 
   EntryRequirement({
@@ -101,7 +101,7 @@ class EntryRequirement {
 
   factory EntryRequirement.fromJson(Map<String, dynamic> json) => EntryRequirement(
     title: json["title"],
-    list: json["list"] == null ? [] : List<dynamic>.from(json["list"]!.map((x) => x)),
+    list: json["list"] == null ? [] : List<String?>.from(json["list"]?.map((x) => x)),
     id: json["_id"],
   );
 
