@@ -13,7 +13,8 @@ class PartyOverview extends StatelessWidget {
   final String? desc;
   final String? image;
   final Function()? onNext;
-  const PartyOverview({super.key,this.title,this.desc,this.image,this.onNext});
+  final String? buttonText;
+  const PartyOverview({super.key,this.title,this.desc,this.image,this.onNext,this.buttonText});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class PartyOverview extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(desc ?? '',style: AppTextStyles.get24MediumTextStyle(color: AppColor.textPurple,letterSpacing: 1.2),textAlign: TextAlign.center),
-                AppButton(StringConsts.getStarted, onPressed: onNext),
+                AppButton(buttonText ?? StringConsts.getStarted, onPressed: onNext),
               ],
             ),
           ),

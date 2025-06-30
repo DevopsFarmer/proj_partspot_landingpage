@@ -89,7 +89,7 @@ class OtpScreen extends StatelessWidget {
                         child: Obx(() {
                           return AppButton(
                             StringConsts.submit,
-                            isEnabled: controller.otpCode.isNotEmpty,
+                            isEnabled: controller.otpCode.length == 6,
                             backgroundColor: AppColor.buttonOrange,
                             margin: const EdgeInsets.symmetric(vertical: 8),
                             onPressed: () {

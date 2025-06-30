@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:partyspot/module/home/data/models/events_meta.dart';
 import 'package:partyspot/module/plan_a_wedding/presentation/controller/plan_a_event_controller.dart';
 import 'package:partyspot/module/self_hosted_party/presentation/widgets/party_overview.dart';
-import 'package:partyspot/routes/routes_const.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
@@ -34,8 +33,9 @@ class SelfHostedOverviewScreen extends StatelessWidget {
               title: StringConsts.selfHostedParties,
               desc: StringConsts.selfHostedPartiesDesc,
               image: AppImages.selfHostedOverviewImage,
+              buttonText: StringConsts.comingSoon,
               onNext: (){
-                Get.toNamed(Routes.selfHostedPartySelectionScreen);
+                // Get.toNamed(Routes.selfHostedPartySelectionScreen);
               },
             );
           }

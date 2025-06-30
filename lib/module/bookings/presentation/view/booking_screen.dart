@@ -9,6 +9,7 @@ import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/loading_events_shimmer.dart';
+import 'package:partyspot/utils/widgets/no_data_found_widget.dart';
 
 class BookingScreen extends StatelessWidget {
    BookingScreen({super.key});
@@ -43,6 +44,8 @@ class BookingScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               itemBuilder: (context, index) => const EventShimmerItem(),
             );
+          }else if(bookingController.bookingList.isEmpty){
+            return NoDataFoundWidget();
           }else{
             return ListView.builder(
               itemCount: bookingController.bookingList.length,

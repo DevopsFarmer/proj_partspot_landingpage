@@ -80,6 +80,7 @@ class StringConsts {
   static const invalidPhoneNumber = 'Invalid phone number';
   static const couldNotOpenPhoneDialer = 'Could not open phone dialer';
   static const endDateCannotBeBeforeStartDate = 'The end date cannot be before the start date';
+  static const noDataFound = "No Data Found";
 
   // -------------
 
@@ -271,6 +272,7 @@ class StringConsts {
 
   static const myWedPlan = "MY WEDDING PLAN";
   static const seeMore = "See More";
+  static const comingSoon = "Coming soon...";
 
   ///Event Info
   static const whatsIncluded = "What’s included";
