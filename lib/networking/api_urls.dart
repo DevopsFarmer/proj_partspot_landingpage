@@ -17,5 +17,6 @@ class ApiUrl {
   static const createEventRequest = '/users/create-event-request';
   static const myBookings = '/users/my-bookings';
   static const eventsGet = '/events/get';
+  static const users = '/users';
   static eventBook(String? eventId) => '/users/event/$eventId/book';
 }

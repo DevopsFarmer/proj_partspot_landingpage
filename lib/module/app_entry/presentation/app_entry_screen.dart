@@ -6,7 +6,7 @@ import 'package:partyspot/module/bookings/presentation/view/booking_bottom_sheet
 import 'package:partyspot/module/explore/view/explore_screen.dart';
 import 'package:partyspot/module/home/presentation/view/home_screen.dart';
 import 'package:partyspot/module/party_spot_vip/view/vip_screen.dart';
-import 'package:partyspot/module/settings/view/settings_screen.dart';
+import 'package:partyspot/module/settings/presentation/view/settings_screen.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart' show AppColor;
 import 'package:partyspot/utils/constants/icon_constants.dart';

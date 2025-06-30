@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:partyspot/module/settings/view/widgets/settings_current_plan_row.dart';
+import 'package:partyspot/module/settings/presentation/view/widgets/settings_current_plan_row.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 // Ensure this path is correct
