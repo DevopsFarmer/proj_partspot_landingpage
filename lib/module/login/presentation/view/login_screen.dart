@@ -23,7 +23,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     String? selectedCountryCode = "+91";
 
     return Scaffold(
@@ -68,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                       PhoneInputField(
                         controller: numberController,
                         countryFlagNotifier: selectedCountry,
-                        onChangeCountryCode: (String? val){
+                        onChangeCountryCode: (String? val) {
                           selectedCountryCode = val;
                         },
                       ),
@@ -77,13 +76,28 @@ class LoginScreen extends StatelessWidget {
                         backgroundColor: AppColor.buttonOrange,
                         margin: const EdgeInsets.symmetric(vertical: 8),
                         onPressed: () {
-                          loginController.onPhoneLogin(selectedCountryCode,int.tryParse(numberController.text) ?? 0,onSuccess: (otp){
-                            Get.offNamed(Routes.otpScreen,arguments: {RoutesArgument.phoneNumber: num.tryParse(numberController.text),RoutesArgument.code: selectedCountryCode});
-                            showSnackBar(text: otp,duration: Duration(seconds: 5));
-                          });
+                          loginController.onPhoneLogin(
+                            selectedCountryCode,
+                            int.tryParse(numberController.text) ?? 0,
+                            onSuccess: (otp) {
+                              Get.offNamed(
+                                Routes.otpScreen,
+                                arguments: {
+                                  RoutesArgument.phoneNumber: num.tryParse(
+                                    numberController.text,
+                                  ),
+                                  RoutesArgument.code: selectedCountryCode,
+                                },
+                              );
+                              showSnackBar(
+                                text: otp,
+                                duration: Duration(seconds: 5),
+                              );
+                            },
+                          );
                         },
                       ),
-                      SocialLoginSection(),
+                      // SocialLoginSection(),
                     ],
                   ),
                 ),
