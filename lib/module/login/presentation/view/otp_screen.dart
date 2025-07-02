@@ -18,6 +18,8 @@ class OtpScreen extends StatelessWidget {
 
   final OtpController controller = Get.find<OtpController>();
 
+  List<TextEditingController> otpCtrls = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +63,12 @@ class OtpScreen extends StatelessWidget {
                       ),
 
                       OtpTextField(
+                        handleControllers: (controllers) {
+                          otpCtrls =
+                              controllers
+                                  .whereType<TextEditingController>()
+                                  .toList();
+                        },
                         numberOfFields: 6,
                         borderRadius: BorderRadius.circular(10),
                         fillColor: AppColor.colorEDEDED,
@@ -73,6 +81,7 @@ class OtpScreen extends StatelessWidget {
 
                       ResendOtpTimerWidget(
                         onResendTap: () {
+                          otpCtrls.clear();
                           controller.onResendOtp(
                             code,
                             phoneNumber,

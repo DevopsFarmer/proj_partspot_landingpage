@@ -36,44 +36,63 @@ class VipScreen extends StatelessWidget {
           ),
 
           SafeArea(
-            child: SingleChildScrollView(
+            child: SizedBox(
+              height: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          StringConsts.joinVip,
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.get24BoldTextStyle(
-                            color: AppColor.whiteColor,
-                          ),
-                        ),
-                      ],
+                child: Center(
+                  child: Text(
+                    StringConsts.comingSoon,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.get24BoldTextStyle(
+                      color: AppColor.whiteColor,
                     ),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 14.0),
-                      child: Text(
-                        StringConsts.vipSubscribe,
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.get16RegularTextStyle(
-                          color: AppColor.whiteColor,
-                        ),
-                      ),
-                    ),
-
-                    VipPlansRow(),
-
-                    PlanBenefits(),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
+
+          // SafeArea(
+          //   child: SingleChildScrollView(
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(12.0),
+          //       child: Column(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         children: [
+
+          //           Row(
+          //             mainAxisAlignment: MainAxisAlignment.center,
+          //             children: [
+          //               Text(
+          //                 StringConsts.joinVip,
+          //                 textAlign: TextAlign.center,
+          //                 style: AppTextStyles.get24BoldTextStyle(
+          //                   color: AppColor.whiteColor,
+          //                 ),
+          //               ),
+          //             ],
+          //           ),
+
+          //           Padding(
+          //             padding: const EdgeInsets.symmetric(vertical: 14.0),
+          //             child: Text(
+          //               StringConsts.vipSubscribe,
+          //               textAlign: TextAlign.center,
+          //               style: AppTextStyles.get16RegularTextStyle(
+          //                 color: AppColor.whiteColor,
+          //               ),
+          //             ),
+          //           ),
+
+          //           VipPlansRow(),
+
+          //           PlanBenefits(),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
