@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
+import 'package:partyspot/module/login/data/models/login_response_model.dart';
 import 'package:partyspot/module/login/domain/repositories/auth_repository.dart';
 import 'package:partyspot/networking/model/error_response_model.dart';
 import 'package:partyspot/utils/classes/base_controller.dart';
@@ -10,6 +11,7 @@ import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/services/storage_service.dart';
 import 'package:partyspot/utils/widgets/loader.dart';
 import 'package:partyspot/utils/widgets/snackbars.dart';
+import 'package:path/path.dart';
 
 class OtpController extends BaseController {
 
@@ -64,13 +66,13 @@ class OtpController extends BaseController {
   String get otpCode => _otpCode.value;
   set otpCode(String val) => _otpCode.value = val;
 
-  Future<void> onVerifyOtp(String? code,int? phoneNumber,{void Function()? onSuccess}) async {
+  Future<void> onVerifyOtp(String? code,int? phoneNumber,{void Function(User? user)? onSuccess}) async {
     try {
       FullScreenLoading.show();
       final pushToken = await getPushToken();
       final res = await _loginRepository.verifyOTP(code: code,phoneNumber: phoneNumber,otp: otpCode,pushToken: pushToken);
       _storageService.setAccessToken(res?.data?.accessToken);
-      onSuccess?.call();
+      onSuccess?.call(res?.data?.user);
     } on ErrorResponse catch (e) {
       setErrorMessage(e.message);
     } catch (e) {

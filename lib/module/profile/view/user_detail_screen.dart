@@ -101,9 +101,12 @@ class UserDetailScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  InkWell(
-                    onTap: () => Get.back(),
-                    child: CustomSvgPicture(iconPath: AppIcons.backArrowIcon),
+                  Visibility(
+                    visible: fromEdit ?? true,
+                    child: InkWell(
+                      onTap: () => Get.back(),
+                      child: CustomSvgPicture(iconPath: AppIcons.backArrowIcon),
+                    ),
                   ),
                   const SizedBox(width: 6),
                   Text(
@@ -302,7 +305,7 @@ class UserDetailScreen extends StatelessWidget {
                     if (_formKey.currentState?.validate() ?? false) {
                       userDetailController.onUpdateProfile(
                         onSuccess:
-                            () => Get.offAndToNamed(Routes.appEntryScreen),
+                            () => Get.offAllNamed(Routes.appEntryScreen),
                       );
                     }
                   },
