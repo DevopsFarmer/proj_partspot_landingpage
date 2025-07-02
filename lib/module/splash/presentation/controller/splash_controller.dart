@@ -25,19 +25,19 @@ class SplashController extends BaseController {
             if ((res.fullName?.isEmpty ?? true) ||
                 (res.gender?.isEmpty ?? true) ||
                 (res.dob == null)) {
-              Get.toNamed(Routes.userDetailScreen);
+              Get.offAllNamed(Routes.userDetailScreen);
             } else {
-              Get.toNamed(Routes.appEntryScreen);
+              Get.offAllNamed(Routes.appEntryScreen);
             }
           } else {
-            Get.offAndToNamed(Routes.signUpScreen);
+            Get.offAllNamed(Routes.signUpScreen);
             await _storageService.clearSession();
           }
         } else {
-          Get.toNamed(Routes.loginScreen);
+          Get.offAllNamed(Routes.loginScreen);
         }
       } else {
-        Get.toNamed(Routes.onBoardingScreen);
+        Get.offAllNamed(Routes.onBoardingScreen);
       }
     });
   }
