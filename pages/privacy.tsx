@@ -1,0 +1,135 @@
+import React from "react";
+
+const PrivacyPolicy = () => {
+  return (
+    <div style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", padding: '1em' }}>
+      <h1>Privacy Policy</h1>
+
+      <p>
+        This privacy policy applies to the Partyspot app (hereby referred to as "Application") for mobile
+        devices that was created by PARTYSPOT TECHNOLOGIES PRIVATE LIMITED (hereby referred to as "Service
+        Provider") as a Free service. This service is intended for use "AS IS".
+      </p>
+
+      <h2>Information Collection and Use</h2>
+      <p>The Application collects information when you download and use it. This information may include:</p>
+      <ul>
+        <li>Your device's Internet Protocol address (e.g. IP address)</li>
+        <li>The pages of the Application that you visit, the time and date of your visit, the time spent on those pages</li>
+        <li>The time spent on the Application</li>
+        <li>The operating system you use on your mobile device</li>
+      </ul>
+
+      <p>The Application does not gather precise information about the location of your mobile device.</p>
+
+      <p>
+        The Service Provider may use the information you provided to contact you from time to time to provide
+        you with important information, required notices and marketing promotions.
+      </p>
+
+      <p>
+        For a better experience, while using the Application, the Service Provider may require you to provide
+        us with certain personally identifiable information, including but not limited to:
+        <br />
+        <strong>Manish Paliwal, 19/468 C.H.B Jodhpur, manishpaliwal28@gmail.com, 7742328822</strong>. <br />
+        The information that the Service Provider requests will be retained and used as described in this
+        privacy policy.
+      </p>
+
+      <h2>Third Party Access</h2>
+      <p>
+        Only aggregated, anonymized data is periodically transmitted to external services to aid the Service
+        Provider in improving the Application and their service.
+      </p>
+
+      <p>
+        Please note that the Application utilizes third-party services that have their own Privacy Policy
+        about handling data. Below are the links:
+      </p>
+      <ul>
+        <li>
+          <a
+            href="https://www.google.com/policies/privacy/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google Play Services
+          </a>
+        </li>
+      </ul>
+
+      <p>The Service Provider may disclose User Provided and Automatically Collected Information:</p>
+      <ul>
+        <li>As required by law, such as to comply with a subpoena or similar legal process</li>
+        <li>When disclosure is necessary to protect rights, safety, investigate fraud, or respond to a request</li>
+        <li>
+          With trusted service providers who work on their behalf and have agreed to adhere to this privacy
+          statement
+        </li>
+      </ul>
+
+      <h2>Opt-Out Rights</h2>
+      <p>
+        You can stop all collection of information by the Application easily by uninstalling it. You may use
+        the standard uninstall processes available as part of your mobile device.
+      </p>
+
+      <h2>Data Retention Policy</h2>
+      <p>
+        The Service Provider will retain User Provided data for as long as you use the Application and for a
+        reasonable time thereafter. If you'd like them to delete the data, please contact:
+        <br />
+        <a href="mailto:support@partywalah.in">support@partywalah.in</a>
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        The Service Provider does not knowingly collect personal information from children under 13. If a
+        parent or guardian becomes aware that a child has provided personal information, please contact:
+        <br />
+        <a href="mailto:support@partywalah.in">support@partywalah.in</a>
+      </p>
+
+      <h2>Security</h2>
+      <p>
+        The Service Provider is concerned about safeguarding the confidentiality of your information. They
+        provide physical, electronic, and procedural safeguards to protect the data.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        This Privacy Policy may be updated from time to time. Changes will be notified by updating this page.
+        Continued use of the app is deemed as acceptance of all changes.
+      </p>
+
+      <p><strong>Effective date:</strong> July 2, 2025</p>
+
+      <h2>Your Consent</h2>
+      <p>
+        By using the Application, you consent to the processing of your information as described in this
+        Privacy Policy.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have questions regarding privacy while using the Application, please contact:
+        <br />
+        <a href="mailto:support@partywalah.in">support@partywalah.in</a>
+      </p>
+
+      <hr />
+      <p>
+        This privacy policy was generated by{" "}
+        <a
+          href="https://app-privacy-policy-generator.nisrulz.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          App Privacy Policy Generator
+        </a>
+      </p>
+    </div>
+  );
+};
+
+export default PrivacyPolicy;

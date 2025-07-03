@@ -209,6 +209,32 @@ export default function Home() {
           Follow Us @ party_spot_jd 💜
         </a>
       </motion.div>
+            <footer
+  style={{
+    marginTop: '4rem',
+    paddingTop: '2rem',
+    borderTop: '1px solid #444',
+    fontSize: '0.9rem',
+    color: '#aaa',
+  }}
+>
+  <p>
+    © {new Date().getFullYear()} Partyspot Technologies Pvt. Ltd. |{' '}
+    <a
+      href="/privacy"
+      style={{ color: '#ff9e00', textDecoration: 'underline' }}
+    >
+      Privacy Policy
+    </a>{' '}
+    |{' '}
+    <a
+      href="/terms"
+      style={{ color: '#ff9e00', textDecoration: 'underline' }}
+    >
+      Terms & Conditions
+    </a>
+  </p>
+</footer>
     </div>
   )
 }
