@@ -9,7 +9,6 @@ import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
-import 'package:partyspot/utils/widgets/snackbars.dart';
 
 class OtpScreen extends StatelessWidget {
   final int? phoneNumber;
@@ -100,18 +99,26 @@ class OtpScreen extends StatelessWidget {
                         child: Obx(() {
                           return AppButton(
                             StringConsts.submit,
-                            isEnabled: controller.otpCode.isNotEmpty,
+                            isEnabled: controller.otpCode.length == 6,
                             backgroundColor: AppColor.buttonOrange,
                             margin: const EdgeInsets.symmetric(vertical: 8),
                             onPressed: () {
                               controller.onVerifyOtp(
                                 code,
                                 phoneNumber,
-                                onSuccess: () {
-                                  Get.offNamed(
-                                    Routes.userDetailScreen,
-                                    arguments: {RoutesArgument.fromEdit: false},
-                                  );
+                                onSuccess: (user) {
+                                  if ((user?.fullName?.isEmpty ?? true) ||
+                                      (user?.gender?.isEmpty ?? true) ||
+                                      (user?.dob == null)){
+                                    Get.offNamed(
+                                      Routes.userDetailScreen,
+                                      arguments: {RoutesArgument.fromEdit: false},
+                                    );
+                                  }else{
+                                    Get.offNamed(
+                                      Routes.appEntryScreen,
+                                    );
+                                  }
                                 },
                               );
                             },

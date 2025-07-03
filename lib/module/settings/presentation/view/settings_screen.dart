@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:partyspot/module/profile/controller/user_detail_controller.dart';
-import 'package:partyspot/module/settings/view/widgets/profile_card.dart';
-import 'package:partyspot/module/settings/view/widgets/profile_img_circle.dart';
-import 'package:partyspot/module/settings/view/widgets/settings_info.dart';
-import 'package:partyspot/module/settings/view/widgets/settings_options.dart';
+import 'package:partyspot/module/settings/presentation/view/widgets/profile_card.dart';
+import 'package:partyspot/module/settings/presentation/view/widgets/profile_img_circle.dart';
+import 'package:partyspot/module/settings/presentation/view/widgets/settings_info.dart';
+import 'package:partyspot/module/settings/presentation/view/widgets/settings_options.dart';
 import 'package:partyspot/utils/classes/user_controller.dart';
 
 import 'package:partyspot/utils/constants/icon_constants.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 
-// import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});

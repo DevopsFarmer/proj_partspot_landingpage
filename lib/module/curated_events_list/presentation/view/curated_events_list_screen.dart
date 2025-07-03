@@ -10,6 +10,7 @@ import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/widgets/custom_image_asset.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 import 'package:partyspot/utils/widgets/loading_events_shimmer.dart';
+import 'package:partyspot/utils/widgets/no_data_found_widget.dart';
 
 class CuratedEventsListScreen extends StatelessWidget {
   final String? eventId;
@@ -72,6 +73,8 @@ class CuratedEventsListScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(16),
                           itemBuilder: (context, index) => const EventShimmerItem(),
                         );
+                      }else if(curatedEventsListController.curatedParties.isEmpty){
+                        return NoDataFoundWidget();
                       }else{
                         return ListView.builder(
                           itemCount: curatedEventsListController.curatedParties.length,

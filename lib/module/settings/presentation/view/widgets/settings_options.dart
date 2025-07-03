@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:partyspot/module/settings/controller/settings_controller.dart';
+import 'package:partyspot/module/settings/presentation/controller/settings_controller.dart';
 import 'package:partyspot/routes/routes_const.dart';
 import 'package:partyspot/utils/alert_dialogs/image_popup.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
@@ -79,6 +79,11 @@ class SettingsOptions extends StatelessWidget {
                             imagePath: AppImages.deleteAccountImage,
                             buttonText: StringConsts.confirm,
                             onConfirm: () {
+                              settingsController.deleteAccount((){
+                                Get.offAllNamed(Routes.loginScreen);
+                              });
+                            },
+                            onCancel: (){
                               Get.back();
                             },
                             outlineText: StringConsts.cancel,

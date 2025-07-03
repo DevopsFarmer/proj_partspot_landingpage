@@ -79,8 +79,8 @@ class StringConsts {
   static const pleaseUploadPdf = 'Please select pdf';
   static const invalidPhoneNumber = 'Invalid phone number';
   static const couldNotOpenPhoneDialer = 'Could not open phone dialer';
-  static const endDateCannotBeBeforeStartDate =
-      'The end date cannot be before the start date';
+  static const endDateCannotBeBeforeStartDate = 'The end date cannot be before the start date';
+  static const noDataFound = "No Data Found";
 
   // -------------
 
@@ -135,7 +135,6 @@ class StringConsts {
   static const annual = "Annual";
   static const beast = "Beast";
   static const monster = "Monster";
-  static const comingSoon = "Coming Soon...";
 
   static const exclusiveDiscount = "Exclusive discounts";
   static const discountDescription = "Get special discounts on party bookings.";
@@ -273,6 +272,7 @@ class StringConsts {
 
   static const myWedPlan = "MY WEDDING PLAN";
   static const seeMore = "See More";
+  static const comingSoon = "Coming soon...";
 
   ///Event Info
   static const whatsIncluded = "What’s included";

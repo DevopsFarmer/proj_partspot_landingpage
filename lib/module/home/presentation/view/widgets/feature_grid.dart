@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:partyspot/module/home/data/models/events_meta.dart';
 import 'package:partyspot/routes/routes_const.dart' show Routes, RoutesArgument;
 import 'package:partyspot/utils/classes/app_text_styles.dart' show AppTextStyles;
+import 'package:partyspot/utils/constants/app_enums.dart';
 import 'package:partyspot/utils/constants/app_size.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart' show StringConsts;
@@ -30,23 +31,23 @@ class FeatureGrid extends StatelessWidget {
               runSpacing: 16,
               children: List.generate(eventData?.eventType?.length ?? 0, (index){
                 return _featureItem(imagePath: eventData?.eventType?[index].image,title: eventData?.eventType?[index].name,onTap: (){
-                  if(eventData?.eventType?[index].name == 'wedding') {
+                  if(eventData?.eventType?[index].name?.toLowerCase().replaceAll(" ", "") == EventTypes.wedding.name.toLowerCase()) {
                     Get.toNamed(Routes.planAWeddingOverviewScreen,arguments: {
                       RoutesArgument.subTypes: eventData?.eventSubType?.where((e)=>e.parent == eventData?.eventType?[index].id).toList(),
                       RoutesArgument.venueTypes: eventData?.venues,
                       RoutesArgument.foodPreferences: eventData?.foodPrefs,
                       RoutesArgument.eventType: eventData?.eventType?[index],
                     });
-                  }else if(eventData?.eventType?[index].name == 'self hosted'){
+                  }else if(eventData?.eventType?[index].name?.toLowerCase().replaceAll(" ", "") == EventTypes.selfHosted.name.toLowerCase()){
                     Get.toNamed(Routes.selfHostedOverviewScreen,arguments: {
                       RoutesArgument.subTypes: eventData?.eventSubType?.where((e)=>e.parent == eventData?.eventType?[index].id).toList(),
                       RoutesArgument.venueTypes: eventData?.venues,
                       RoutesArgument.foodPreferences: eventData?.foodPrefs,
                       RoutesArgument.eventType: eventData?.eventType?[index],
                     });
-                  }else if(eventData?.eventType?[index].name == 'curated parties'){
+                  }else if(eventData?.eventType?[index].name?.toLowerCase().replaceAll(" ", "") == EventTypes.curatedParties.name.toLowerCase()){
                     Get.toNamed(Routes.curatedEventsListScreen,arguments: {RoutesArgument.eventId: eventData?.eventType?[index].id});
-                  }else if(eventData?.eventType?[index].name == 'multiple host'){
+                  }else if(eventData?.eventType?[index].name?.toLowerCase().replaceAll(" ", "") == EventTypes.multipleHost.name.toLowerCase()){
 
                   }
                 });
