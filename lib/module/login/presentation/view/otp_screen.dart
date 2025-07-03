@@ -81,7 +81,9 @@ class OtpScreen extends StatelessWidget {
 
                       ResendOtpTimerWidget(
                         onResendTap: () {
-                          otpCtrls.clear();
+                          for (var ctrl in otpCtrls) {
+                            ctrl.clear();
+                          }
                           controller.onResendOtp(
                             code,
                             phoneNumber,

@@ -4,7 +4,6 @@ import 'package:partyspot/module/login/presentation/controller/login_controller.
 
 import 'package:partyspot/module/login/presentation/view/widgets/login_header.dart';
 import 'package:partyspot/module/login/presentation/view/widgets/phone_input_textfield.dart';
-import 'package:partyspot/module/login/presentation/view/widgets/social_login_section.dart';
 import 'package:partyspot/routes/routes_const.dart';
 
 import 'package:partyspot/utils/constants/color_consts.dart';
