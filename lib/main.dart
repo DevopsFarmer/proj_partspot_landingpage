@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:partyspot/firebase_options.dart';
@@ -10,6 +11,8 @@ import 'package:partyspot/module/home/data/repositories/home_repository_impl.dar
 import 'package:partyspot/module/home/domain/repositories/home_repository.dart';
 import 'package:partyspot/module/login/data/auth_repository_impl.dart';
 import 'package:partyspot/module/login/domain/repositories/auth_repository.dart';
+import 'package:partyspot/module/notifications/local_notification_service.dart';
+import 'package:partyspot/module/notifications/notification_handler.dart';
 import 'package:partyspot/module/plan_a_wedding/data/plan_event_repository_impl.dart';
 import 'package:partyspot/module/plan_a_wedding/domain/plan_event_repository.dart';
 import 'package:partyspot/module/settings/data/repositories/setting_repository_impl.dart';
@@ -23,26 +26,50 @@ import 'package:partyspot/utils/services/storage_service.dart';
 
 import 'networking/dio_injector.dart';
 
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // Background notification handle karega (terminated ya background se)
+  print("_firebaseMessagingBackgroundHandler::::::::::  ${message.data}");
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (message.notification == null) {
+    await LocalNotificationService.displayNotification(message);
+  }
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  await LocalNotificationService.initialize();
   await _setupRepo();
   await _setupService();
   runApp(const MyApp());
 }
-_setupService(){
+
+_setupService() {
   AppEnv.setEnv = Env.dev;
   locator.registerLazySingleton<DioInjector>(() => DioInjector());
   locator.registerLazySingleton<StorageService>(() => StorageService());
   Get.put(UserController());
 }
-_setupRepo(){
-  locator.registerLazySingleton<AuthRepository>(()=>AuthRepositoryImpl());
-  locator.registerLazySingleton<HomeRepository>(()=>HomeRepositoryImpl());
-  locator.registerLazySingleton<PlanEventRepository>(()=>PlanEventRepositoryImpl());
-  locator.registerLazySingleton<MyBookingRepository>(()=>MyBookingRepositoryImpl());
-  locator.registerLazySingleton<CuratedEventsListRepository>(()=>CuratedEventsRepositoryImpl());
-  locator.registerLazySingleton<SettingRepository>(()=>SettingRepositoryImpl());
+
+_setupRepo() {
+  locator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
+  locator.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl());
+  locator.registerLazySingleton<PlanEventRepository>(
+    () => PlanEventRepositoryImpl(),
+  );
+  locator.registerLazySingleton<MyBookingRepository>(
+    () => MyBookingRepositoryImpl(),
+  );
+  locator.registerLazySingleton<CuratedEventsListRepository>(
+    () => CuratedEventsRepositoryImpl(),
+  );
+  locator.registerLazySingleton<SettingRepository>(
+    () => SettingRepositoryImpl(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -51,6 +78,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    NotificationHandler.initializeFCM();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashScreen,
