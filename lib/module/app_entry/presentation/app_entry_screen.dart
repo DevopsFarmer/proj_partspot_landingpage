@@ -13,7 +13,6 @@ import 'package:partyspot/utils/constants/icon_constants.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 
-import '../../bookings/presentation/view/widgets/my_plan_header.dart' show MyPlanHeader;
 
 class AppEntryScreen extends StatelessWidget {
   AppEntryScreen({super.key});
@@ -42,32 +41,29 @@ class AppEntryScreen extends StatelessWidget {
           return Scaffold(
             body: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 60.0),
-                  child: IndexedStack(
-                    index: controller.selectedIndex,
-                    children: [
-                      HomeScreen(),
-                      ExploreScreen(),
-                      VipScreen(),
-                      SettingsScreen(),
-                    ],
-                  ),
+                IndexedStack(
+                  index: controller.selectedIndex,
+                  children: [
+                    HomeScreen(),
+                    ExploreScreen(),
+                    VipScreen(),
+                    SettingsScreen(),
+                  ],
                 ),
 
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: MyPlanHeader(
-                    title: StringConsts.myWedPlan,
-                    backgroundColor: AppColor.buttonOrange,
-                    textColor: AppColor.whiteColor,
-                    onSeeMoreTap: () {
-                      _showBottomSheet();
-                    },
-                  ),
-                ),
+                // Positioned(
+                //   left: 0,
+                //   right: 0,
+                //   bottom: 0,
+                //   child: MyPlanHeader(
+                //     title: StringConsts.myWedPlan,
+                //     backgroundColor: AppColor.buttonOrange,
+                //     textColor: AppColor.whiteColor,
+                //     onSeeMoreTap: () {
+                //       _showBottomSheet();
+                //     },
+                //   ),
+                // ),
               ],
             ),
 

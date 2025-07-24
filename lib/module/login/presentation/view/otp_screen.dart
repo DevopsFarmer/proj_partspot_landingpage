@@ -60,7 +60,8 @@ class OtpScreen extends StatelessWidget {
                         imagePath: AppImages.otpImage,
                         text: StringConsts.enterOtp,
                       ),
-
+                      Text("OTP sent to ${code}${phoneNumber}"),
+                      const SizedBox(height: 20,),
                       OtpTextField(
                         handleControllers: (controllers) {
                           otpCtrls =

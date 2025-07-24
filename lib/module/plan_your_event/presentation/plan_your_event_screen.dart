@@ -13,6 +13,7 @@ import 'package:partyspot/utils/constants/app_size.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/icon_constants.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
+import 'package:partyspot/utils/widgets/app_text_field.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 import 'package:path/path.dart' as p;
@@ -141,7 +142,7 @@ class PlanYourEventScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Obx((){
-                            return Text('${planAEventController.noOfGuest} Guests',style: AppTextStyles.get16RegularTextStyle(color: AppColor.colorB1B1B1));
+                            return Text('${planAEventController.noOfGuest} Guests',style: AppTextStyles.get16RegularTextStyle(color: AppColor.darkGreyTextColor));
                           }),
                           GestureDetector(
                             onTap: ()async{
@@ -159,7 +160,7 @@ class PlanYourEventScreen extends StatelessWidget {
                                   color: AppColor.disabledColor
                                 )
                               ),
-                              child: Text(StringConsts.custom,style: AppTextStyles.get12RegularTextStyle(color: AppColor.disabledColor),),
+                              child: Text(StringConsts.custom,style: AppTextStyles.get12RegularTextStyle(),),
                             ),
                           )
                         ],
@@ -189,33 +190,36 @@ class PlanYourEventScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    GetBuilder<PartyTypeSelectionController<Venue?>>(
-                        init: PartyTypeSelectionController<Venue?>(isMultiSelect: true),
-                        tag: 'venue_type',
-                        builder: (controller) {
-                          return Obx(() => Wrap(
-                            spacing: 5.spW,
-                            runSpacing: 12,
-                            children: List.generate(planAEventController.venueTypes?.length ?? 0, (index) {
-                              final item = planAEventController.venueTypes?[index];
-                              final isSelected = controller.isSelected(item);
-                              return SelectionItem(
-                                text: item?.name ?? '',
-                                borderRadius: 4,
-                                isSelected: isSelected,
-                                onTap: ()async{
-                                  controller.toggleSelection(item);
-                                  planAEventController.selectedVenueTypes = controller.selectedItems;
-                                },
-                                borderWidth: 1,
-                                textStyle: AppTextStyles.get14RegularTextStyle(
-                                  color: isSelected ? AppColor.orangeColor : AppColor.disabledColor,
-                                ),
-                                padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 12),
-                              );
-                            }),
-                          ));
-                        }
+                    Visibility(
+                      visible: planAEventController.venueTypes?.isNotEmpty ?? false,
+                      child: GetBuilder<PartyTypeSelectionController<Venue?>>(
+                          init: PartyTypeSelectionController<Venue?>(isMultiSelect: true),
+                          tag: 'venue_type',
+                          builder: (controller) {
+                            return Obx(() => Wrap(
+                              spacing: 5.spW,
+                              runSpacing: 12,
+                              children: List.generate(planAEventController.venueTypes?.length ?? 0, (index) {
+                                final item = planAEventController.venueTypes?[index];
+                                final isSelected = controller.isSelected(item);
+                                return SelectionItem(
+                                  text: item?.name ?? '',
+                                  borderRadius: 4,
+                                  isSelected: isSelected,
+                                  onTap: ()async{
+                                    controller.toggleSelection(item);
+                                    planAEventController.selectedVenueTypes = controller.selectedItems;
+                                  },
+                                  borderWidth: 1,
+                                  textStyle: AppTextStyles.get14RegularTextStyle(
+                                    color: isSelected ? AppColor.orangeColor : AppColor.disabledColor,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 12),
+                                );
+                              }),
+                            ));
+                          }
+                      ),
                     )
 
                   ],
@@ -286,13 +290,33 @@ class PlanYourEventScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(StringConsts.specialRequirements,style: AppTextStyles.get16MediumTextStyle()),
-                        Text("*",style: AppTextStyles.get16MediumTextStyle(color: AppColor.redColor)),
-                      ],
-                    ),
+                    Text(StringConsts.notes,style: AppTextStyles.get16MediumTextStyle()),
+                    const SizedBox(height: 30),
+                    AppTextField(
+                      maxLines: 3,
+                      backgroundColor: AppColor.whiteColor,
+                      hint: StringConsts.enterNotesHere,
+                      onChanged: (val){
+                        planAEventController.note = val;
+                      },
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 22),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: AppColor.orangeColor,
+                    width: 2,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(StringConsts.specialRequirements,style: AppTextStyles.get16MediumTextStyle()),
                     const SizedBox(height: 30),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

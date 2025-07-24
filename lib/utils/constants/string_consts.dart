@@ -284,4 +284,6 @@ class StringConsts {
   static const maximumTicketsPerBooking = "Maximum 10 tickets per booking";
   static const totalPrice = "Total Price";
   static const planYourWedding = "Plan your Wedding";
+  static const notes = "Notes";
+  static const enterNotesHere = "Enter notes here...";
 }

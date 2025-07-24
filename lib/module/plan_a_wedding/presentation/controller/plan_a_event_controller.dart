@@ -56,6 +56,11 @@ class PlanAEventController extends BaseController{
   set specialReqUrl(String? val) => _specialReqUrl.value = val;
 
 
+  final Rxn<String?> _note = Rxn<String?>();
+  String? get note => _note.value;
+  set note(String? val) => _note.value = val;
+
+
 
   @override
   void onInit() {
@@ -108,8 +113,6 @@ class PlanAEventController extends BaseController{
       setErrorMessage(StringConsts.pleaseSelectVenue);
     }else if(selectedFoodPreferences.isEmpty){
       setErrorMessage(StringConsts.pleaseSelectFoodPreference);
-    }else if(file == null){
-      setErrorMessage(StringConsts.pleaseUploadPdf);
     }else if(selectedEndDate?.isBefore(selectedStartDate ?? DateTime.now()) ?? true){
       setErrorMessage(StringConsts.endDateCannotBeBeforeStartDate);
     }else{
@@ -123,7 +126,8 @@ class PlanAEventController extends BaseController{
           numberOfGuests: noOfGuest,
           specialRequirements: specialReqUrl,
           subType: List.generate(subTypes?.length ?? 0, (index) => Name(name: subTypes?[index]?.name,id: subTypes?[index]?.id)),
-          name: Name(name: eventType?.name,id: eventType?.id)
+          name: Name(name: eventType?.name,id: eventType?.id),
+          note: note
         );
 
         final res = await _planEventRepository.postEventRequest(planEventRequest: planEventRequest);

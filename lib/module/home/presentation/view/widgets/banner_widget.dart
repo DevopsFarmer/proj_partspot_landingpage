@@ -18,29 +18,32 @@ class BannerWidget extends StatelessWidget {
           return _buildLoader(context);
         }
 
-        return CarouselSlider.builder(
-          itemCount: controller.bannerData?.data?.length ?? 0,
-          options: CarouselOptions(
-            autoPlay: true,
-            viewportFraction: 1,
-            aspectRatio: 16 / 6,
-          ),
-          itemBuilder: (context, index, realIndex) {
-            return Container(
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: CustomNetworkImage(
-                  boxFit: BoxFit.cover,
-                  imageUrl: controller.bannerData?.data?[index].imageUrl,
+        return Visibility(
+         visible: controller.bannerData?.data?.isNotEmpty ?? false,
+          child: CarouselSlider.builder(
+            itemCount: controller.bannerData?.data?.length ?? 0,
+            options: CarouselOptions(
+              autoPlay: true,
+              viewportFraction: 1,
+              aspectRatio: 16 / 6,
+            ),
+            itemBuilder: (context, index, realIndex) {
+              return Container(
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
                 ),
-              ),
-            );
-          },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: CustomNetworkImage(
+                    boxFit: BoxFit.cover,
+                    imageUrl: controller.bannerData?.data?[index].imageUrl,
+                  ),
+                ),
+              );
+            },
+          ),
         );
       },
     );
