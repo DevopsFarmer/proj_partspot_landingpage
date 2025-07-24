@@ -11,7 +11,7 @@ String myBookingResponseToJson(MyBookingResponse data) => json.encode(data.toJso
 class MyBookingResponse {
   final int? statusCode;
   final String? message;
-  final List<Datum>? data;
+  final Data? data;
 
   MyBookingResponse({
     this.statusCode,
@@ -22,13 +22,45 @@ class MyBookingResponse {
   factory MyBookingResponse.fromJson(Map<String, dynamic> json) => MyBookingResponse(
     statusCode: json["statusCode"],
     message: json["message"],
-    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    data: json["data"] == null ? null : Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
     "statusCode": statusCode,
     "message": message,
+    "data": data?.toJson(),
+  };
+}
+
+class Data {
+  final List<Datum>? data;
+  final int? total;
+  final int? page;
+  final int? limit;
+  final int? totalPages;
+
+  Data({
+    this.data,
+    this.total,
+    this.page,
+    this.limit,
+    this.totalPages,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    total: json["total"],
+    page: json["page"],
+    limit: json["limit"],
+    totalPages: json["totalPages"],
+  );
+
+  Map<String, dynamic> toJson() => {
     "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "total": total,
+    "page": page,
+    "limit": limit,
+    "totalPages": totalPages,
   };
 }
 
@@ -169,13 +201,15 @@ class Event {
   final int? numberOfGuests;
   final List<Name>? venueType;
   final List<Name>? foodPreferences;
-  final String? specialRequirements;
+  final dynamic specialRequirements;
   final dynamic price;
   final dynamic location;
   final dynamic tags;
   final dynamic whatsIncluded;
+  final List<dynamic>? themeIds;
   final List<dynamic>? entryRequirements;
   final int? v;
+  final List<dynamic>? themes;
 
   Event({
     this.id,
@@ -191,8 +225,10 @@ class Event {
     this.location,
     this.tags,
     this.whatsIncluded,
+    this.themeIds,
     this.entryRequirements,
     this.v,
+    this.themes,
   });
 
   factory Event.fromJson(Map<String, dynamic> json) => Event(
@@ -209,8 +245,10 @@ class Event {
     location: json["location"],
     tags: json["tags"],
     whatsIncluded: json["whatsIncluded"],
+    themeIds: json["themeIds"] == null ? [] : List<dynamic>.from(json["themeIds"]!.map((x) => x)),
     entryRequirements: json["entryRequirements"] == null ? [] : List<dynamic>.from(json["entryRequirements"]!.map((x) => x)),
     v: json["__v"],
+    themes: json["themes"] == null ? [] : List<dynamic>.from(json["themes"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -227,8 +265,10 @@ class Event {
     "location": location,
     "tags": tags,
     "whatsIncluded": whatsIncluded,
+    "themeIds": themeIds == null ? [] : List<dynamic>.from(themeIds!.map((x) => x)),
     "entryRequirements": entryRequirements == null ? [] : List<dynamic>.from(entryRequirements!.map((x) => x)),
     "__v": v,
+    "themes": themes == null ? [] : List<dynamic>.from(themes!.map((x) => x)),
   };
 }
 
@@ -264,7 +304,7 @@ class User {
   final String? gender;
   final bool? isEmailVerified;
   final bool? isNumberVerified;
-  final dynamic profilePictureUrl;
+  final String? profilePictureUrl;
   final bool? isProfileComplete;
   final bool? isDeleted;
   final dynamic otp;

@@ -48,6 +48,7 @@ class BookingScreen extends StatelessWidget {
             return NoDataFoundWidget();
           }else{
             return ListView.builder(
+              controller: bookingController.scrollController,
               itemCount: bookingController.bookingList.length,
               padding: const EdgeInsets.all(16),
               itemBuilder: (context,index){

@@ -7,8 +7,8 @@ import 'package:partyspot/utils/services/part_spot_api_service.dart';
 class MyBookingRepositoryImpl extends PartySportApiService implements MyBookingRepository {
 
   @override
-  Future<MyBookingResponse?> getBookings() async{
-    final response = await getRequest(ApiUrl.myBookings);
+  Future<MyBookingResponse?> getBookings({int? page,int? limit}) async{
+    final response = await getRequest(ApiUrl.myBookings,queryParams: {"page": page, "limit": limit});
     return MyBookingResponse.fromJson(response.data);
   }
 
