@@ -69,6 +69,7 @@ class CuratedEventsListScreen extends StatelessWidget {
                     child: Obx((){
                       if(curatedEventsListController.isBusy) {
                         return ListView.builder(
+                          controller: curatedEventsListController.scrollController,
                           itemCount: 5,
                           padding: const EdgeInsets.all(16),
                           itemBuilder: (context, index) => const EventShimmerItem(),

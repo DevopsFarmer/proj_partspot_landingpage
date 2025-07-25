@@ -99,7 +99,7 @@ class AppRoutes {
         name: Routes.curatedEventInfoScreen,
         transition: Transition.circularReveal,
         page: () {
-          final CuratedEventList? partyInfo = Get.arguments?[RoutesArgument.curatedPartyInfo];
+          final Datum? partyInfo = Get.arguments?[RoutesArgument.curatedPartyInfo];
           return EventInfoScreen(curatedEventList: partyInfo);
         },
         binding: CuratedEventInfoBinding(),

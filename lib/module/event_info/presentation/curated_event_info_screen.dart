@@ -19,7 +19,7 @@ import 'package:partyspot/utils/widgets/custom_image_asset.dart';
 import '../../plan_a_wedding/data/models/plan_event_response.dart';
 
 class EventInfoScreen extends StatelessWidget {
-  final CuratedEventList? curatedEventList;
+  final Datum? curatedEventList;
   const EventInfoScreen({super.key,this.curatedEventList});
 
   @override

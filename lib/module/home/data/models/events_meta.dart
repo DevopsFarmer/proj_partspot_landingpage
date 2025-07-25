@@ -13,12 +13,14 @@ class EventsMetaDataResponse {
   final List<FoodPref>? foodPrefs;
   final List<EventType>? eventType;
   final List<EventSubType>? eventSubType;
+  final List<Theme>? theme;
 
   EventsMetaDataResponse({
     this.venues,
     this.foodPrefs,
     this.eventType,
     this.eventSubType,
+    this.theme,
   });
 
   factory EventsMetaDataResponse.fromJson(Map<String, dynamic> json) => EventsMetaDataResponse(
@@ -26,6 +28,7 @@ class EventsMetaDataResponse {
     foodPrefs: json["foodPrefs"] == null ? [] : List<FoodPref>.from(json["foodPrefs"]!.map((x) => FoodPref.fromJson(x))),
     eventType: json["eventType"] == null ? [] : List<EventType>.from(json["eventType"]!.map((x) => EventType.fromJson(x))),
     eventSubType: json["eventSubType"] == null ? [] : List<EventSubType>.from(json["eventSubType"]!.map((x) => EventSubType.fromJson(x))),
+    theme: json["theme"] == null ? [] : List<Theme>.from(json["theme"]!.map((x) => Theme.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -33,6 +36,7 @@ class EventsMetaDataResponse {
     "foodPrefs": foodPrefs == null ? [] : List<dynamic>.from(foodPrefs!.map((x) => x.toJson())),
     "eventType": eventType == null ? [] : List<dynamic>.from(eventType!.map((x) => x.toJson())),
     "eventSubType": eventSubType == null ? [] : List<dynamic>.from(eventSubType!.map((x) => x.toJson())),
+    "theme": theme == null ? [] : List<dynamic>.from(theme!.map((x) => x.toJson())),
   };
 }
 
@@ -94,6 +98,41 @@ class EventType {
   });
 
   factory EventType.fromJson(Map<String, dynamic> json) => EventType(
+    id: json["_id"],
+    name: json["name"],
+    image: json["image"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    v: json["__v"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "_id": id,
+    "name": name,
+    "image": image,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+    "__v": v,
+  };
+}
+class Theme {
+  final String? id;
+  final String? name;
+  final String? image;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final int? v;
+
+  Theme({
+    this.id,
+    this.name,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
+
+  factory Theme.fromJson(Map<String, dynamic> json) => Theme(
     id: json["_id"],
     name: json["name"],
     image: json["image"],

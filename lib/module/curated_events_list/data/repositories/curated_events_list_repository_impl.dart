@@ -1,5 +1,4 @@
 
-import 'dart:convert';
 
 import 'package:partyspot/module/curated_events_list/data/models/curated_booked_response.dart';
 import 'package:partyspot/module/curated_events_list/data/models/curated_event_list_response.dart';
@@ -9,9 +8,9 @@ import 'package:partyspot/utils/services/part_spot_api_service.dart';
 
 class CuratedEventsRepositoryImpl extends PartySportApiService implements CuratedEventsListRepository {
   @override
-  Future<List<CuratedEventList?>?> getCuratedParties({required String? eventId}) async{
+  Future<CuratedPartyListResponse?> getCuratedParties({required String? eventId,int? page,int? limit}) async{
     final response = await getRequest('${ApiUrl.eventsGet}/$eventId');
-    return curatedEventListFromJson(jsonEncode(response.data ?? {}));
+    return CuratedPartyListResponse.fromJson(response.data);
   }
 
   @override

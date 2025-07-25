@@ -3,6 +3,6 @@ import 'package:partyspot/module/curated_events_list/data/models/curated_booked_
 import 'package:partyspot/module/curated_events_list/data/models/curated_event_list_response.dart';
 
 abstract class CuratedEventsListRepository {
-  Future<List<CuratedEventList?>?> getCuratedParties({required String? eventId});
+  Future<CuratedPartyListResponse?> getCuratedParties({required String? eventId,int? page,int? limit});
   Future<CuratedBookedResponse?> bookCuratedParty({required String? eventId,required num? noOfGuest});
 }
