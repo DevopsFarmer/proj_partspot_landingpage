@@ -13,7 +13,7 @@ class EventsMetaDataResponse {
   final List<FoodPref>? foodPrefs;
   final List<EventType>? eventType;
   final List<EventSubType>? eventSubType;
-  final List<Theme>? theme;
+  final List<PartyTheme>? theme;
 
   EventsMetaDataResponse({
     this.venues,
@@ -28,7 +28,7 @@ class EventsMetaDataResponse {
     foodPrefs: json["foodPrefs"] == null ? [] : List<FoodPref>.from(json["foodPrefs"]!.map((x) => FoodPref.fromJson(x))),
     eventType: json["eventType"] == null ? [] : List<EventType>.from(json["eventType"]!.map((x) => EventType.fromJson(x))),
     eventSubType: json["eventSubType"] == null ? [] : List<EventSubType>.from(json["eventSubType"]!.map((x) => EventSubType.fromJson(x))),
-    theme: json["theme"] == null ? [] : List<Theme>.from(json["theme"]!.map((x) => Theme.fromJson(x))),
+    theme: json["theme"] == null ? [] : List<PartyTheme>.from(json["theme"]!.map((x) => PartyTheme.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -115,7 +115,7 @@ class EventType {
     "__v": v,
   };
 }
-class Theme {
+class PartyTheme {
   final String? id;
   final String? name;
   final String? image;
@@ -123,7 +123,7 @@ class Theme {
   final DateTime? updatedAt;
   final int? v;
 
-  Theme({
+  PartyTheme({
     this.id,
     this.name,
     this.image,
@@ -132,7 +132,7 @@ class Theme {
     this.v,
   });
 
-  factory Theme.fromJson(Map<String, dynamic> json) => Theme(
+  factory PartyTheme.fromJson(Map<String, dynamic> json) => PartyTheme(
     id: json["_id"],
     name: json["name"],
     image: json["image"],

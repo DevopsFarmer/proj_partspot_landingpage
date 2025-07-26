@@ -1,12 +1,19 @@
-import 'package:get/get.dart';
-import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:partyspot/module/app_entry/domain/app_entry_repository.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/networking/model/error_response_model.dart';
 import 'package:partyspot/utils/classes/base_controller.dart';
 import 'package:partyspot/utils/constants/service_const.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 
-class HomeController extends BaseController{
+class AppEntryController extends BaseController{
+  int selectedIndex = 0;
+
+  updateIndex(int val){
+    selectedIndex = val;
+    update();
+  }
+
   final AppEntryRepository _appEntryRepository = locator<AppEntryRepository>();
 
   final Rxn<EventsMetaDataResponse?> _eventMetaData = Rxn<EventsMetaDataResponse?>();
@@ -36,5 +43,4 @@ class HomeController extends BaseController{
       update();
     }
   }
-
 }

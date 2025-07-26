@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:partyspot/module/home/data/models/events_meta.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/module/plan_a_wedding/data/models/plan_event_request.dart';
 import 'package:partyspot/module/plan_a_wedding/data/models/plan_event_response.dart';
 import 'package:partyspot/module/plan_a_wedding/domain/plan_event_repository.dart';
@@ -127,7 +127,7 @@ class PlanAEventController extends BaseController{
           specialRequirements: specialReqUrl,
           subType: List.generate(subTypes?.length ?? 0, (index) => Name(name: subTypes?[index]?.name,id: subTypes?[index]?.id)),
           name: Name(name: eventType?.name,id: eventType?.id),
-          note: note
+          notes: note
         );
 
         final res = await _planEventRepository.postEventRequest(planEventRequest: planEventRequest);

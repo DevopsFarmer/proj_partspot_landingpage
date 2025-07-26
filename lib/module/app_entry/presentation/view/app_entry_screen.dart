@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:partyspot/module/app_entry/controller/app_entry_controller.dart';
+import 'package:partyspot/module/app_entry/presentation/controller/app_entry_controller.dart';
 import 'package:partyspot/module/bookings/presentation/view/booking_bottom_sheet.dart';
 
 import 'package:partyspot/module/explore/view/explore_screen.dart';

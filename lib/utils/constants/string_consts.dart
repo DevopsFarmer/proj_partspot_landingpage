@@ -286,4 +286,5 @@ class StringConsts {
   static const planYourWedding = "Plan your Wedding";
   static const notes = "Notes";
   static const enterNotesHere = "Enter notes here...";
+  static const selectTheme = "Select theme";
 }

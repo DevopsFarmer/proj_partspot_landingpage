@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
-import 'package:partyspot/module/app_entry/binding/app_entry_binding.dart';
-import 'package:partyspot/module/app_entry/presentation/app_entry_screen.dart';
+import 'package:partyspot/module/app_entry/presentation/binding/app_entry_binding.dart';
+import 'package:partyspot/module/app_entry/presentation/view/app_entry_screen.dart';
 import 'package:partyspot/module/bookings/presentation/binding/booking_binding.dart';
 import 'package:partyspot/module/bookings/presentation/view/booking_screen.dart';
 import 'package:partyspot/module/curated_events_list/data/models/curated_event_list_response.dart';
 import 'package:partyspot/module/curated_events_list/presentation/view/curated_events_list_screen.dart';
 import 'package:partyspot/module/event_info/binding/curated_event_info_binding.dart';
 import 'package:partyspot/module/event_info/presentation/curated_event_info_screen.dart';
-import 'package:partyspot/module/home/data/models/events_meta.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/module/plan_a_wedding/data/models/plan_event_response.dart';
 import 'package:partyspot/module/profile/binding/profile_binding.dart';
 import 'package:partyspot/module/profile/binding/user_detail_binding.dart';

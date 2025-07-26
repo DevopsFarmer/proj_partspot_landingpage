@@ -7,6 +7,8 @@ class AppDropDown<T> extends StatelessWidget {
   final ValueChanged<T?> onChanged;
   final String? hint;
   final String? Function(T?)? validator;
+  final Color? color;
+  final BorderSide? borderSide;
 
   const AppDropDown({
     super.key,
@@ -14,7 +16,9 @@ class AppDropDown<T> extends StatelessWidget {
     required this.value,
     required this.onChanged,
     this.hint,
-    this.validator
+    this.validator,
+    this.color,
+    this.borderSide
   });
 
   @override
@@ -26,11 +30,11 @@ class AppDropDown<T> extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hint,
         filled: true,
-        fillColor: AppColor.fieldBgColor,
+        fillColor: color ?? AppColor.fieldBgColor,
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+          borderSide: borderSide ?? BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

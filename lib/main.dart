@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:partyspot/firebase_options.dart';
+import 'package:partyspot/module/app_entry/data/app_entry_repository_impl.dart';
+import 'package:partyspot/module/app_entry/domain/app_entry_repository.dart';
 import 'package:partyspot/module/bookings/data/repositories/my_booking_repository_impl.dart';
 import 'package:partyspot/module/bookings/domain/repositories/my_booking_repository.dart';
 import 'package:partyspot/module/curated_events_list/data/repositories/curated_events_list_repository_impl.dart';
@@ -43,6 +45,7 @@ _setupRepo(){
   locator.registerLazySingleton<MyBookingRepository>(()=>MyBookingRepositoryImpl());
   locator.registerLazySingleton<CuratedEventsListRepository>(()=>CuratedEventsRepositoryImpl());
   locator.registerLazySingleton<SettingRepository>(()=>SettingRepositoryImpl());
+  locator.registerLazySingleton<AppEntryRepository>(()=>AppEntryRepositoryImpl());
 }
 
 class MyApp extends StatelessWidget {

@@ -1,7 +1,14 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/utils/classes/base_controller.dart';
 
 class ExploreController extends BaseController {
+
+  final Rxn<PartyTheme?> _partyTheme = Rxn<PartyTheme?>();
+  PartyTheme? get partyTheme => _partyTheme.value;
+  set partyTheme(PartyTheme? busy) {
+    _partyTheme.value = busy;
+  }
   List<String> areaList = [
     'Ratanada',
     'Sardarpura',
@@ -83,4 +90,6 @@ class ExploreController extends BaseController {
     selectedMonth.value = null;
     update();
   }
+
+
 }

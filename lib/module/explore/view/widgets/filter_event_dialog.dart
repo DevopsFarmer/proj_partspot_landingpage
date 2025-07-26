@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:partyspot/controller/explore_controller.dart';
+import 'package:partyspot/module/app_entry/presentation/controller/app_entry_controller.dart';
 import 'package:partyspot/module/explore/controller/explore_controller.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
+import 'package:partyspot/utils/widgets/app_drop_down.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
+import 'package:partyspot/utils/widgets/price_range_slider.dart';
 
 class FilterDialogWidget extends StatelessWidget {
   final ExploreController controller = Get.find<ExploreController>();
+  final AppEntryController homeController = Get.find<AppEntryController>();
 
   FilterDialogWidget({super.key});
 
@@ -45,16 +49,26 @@ class FilterDialogWidget extends StatelessWidget {
                 ),
               ),
 
-              _buildSectionTitle(StringConsts.priceRange),
-              Obx(
-                () =>
-                    _buildChips(controller.priceList, controller.selectedPrice),
-              ),
+              const SizedBox(height: 16,),
+              PriceRangeSlider(),
+              // Obx(
+              //   () =>
+              //       _buildChips(controller.priceList, controller.selectedPrice),
+              // ),
 
               _buildSectionTitle(StringConsts.selTheme),
-              Obx(
-                () =>
-                    _buildChips(controller.themeList, controller.selectedTheme),
+              AppDropDown<PartyTheme?>(
+                items: homeController.eventMetaData?.theme?.map((e)=>DropdownMenuItem<PartyTheme?>(child: Text(e.name ?? ''),value: e)).toList() ?? [],
+                value: null,
+                onChanged: (val){
+                  controller.partyTheme = val;
+                },
+                hint: StringConsts.selectTheme,
+                color: AppColor.whiteColor,
+                borderSide: BorderSide(
+                    color: AppColor.greyColor,
+                    width: 0.5
+                ),
               ),
 
               const SizedBox(height: 20),

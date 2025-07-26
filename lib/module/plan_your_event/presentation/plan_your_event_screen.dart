@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' show DateFormat;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:partyspot/module/home/data/models/events_meta.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/module/plan_a_wedding/presentation/controller/plan_a_event_controller.dart';
 import 'package:partyspot/module/plan_your_event/presentation/widgets/enter_custom_venue_dialog.dart';
 import 'package:partyspot/module/plan_your_event/presentation/widgets/enter_guest_dialog.dart';

@@ -17,7 +17,7 @@ class PlanEventRequest {
   final List<Name>? venueType;
   final List<Name>? foodPreferences;
   final String? specialRequirements;
-  final String? note;
+  final String? notes;
 
   PlanEventRequest({
     this.name,
@@ -28,7 +28,7 @@ class PlanEventRequest {
     this.venueType,
     this.foodPreferences,
     this.specialRequirements,
-    this.note
+    this.notes
   });
 
   factory PlanEventRequest.fromJson(Map<String, dynamic> json) => PlanEventRequest(
@@ -40,7 +40,7 @@ class PlanEventRequest {
     venueType: json["venueType"] == null ? [] : List<Name>.from(json["venueType"]!.map((x) => Name.fromJson(x))),
     foodPreferences: json["foodPreferences"] == null ? [] : List<Name>.from(json["foodPreferences"]!.map((x) => Name.fromJson(x))),
     specialRequirements: json["specialRequirements"],
-    note: json["note"],
+    notes: json["notes"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -52,7 +52,7 @@ class PlanEventRequest {
     "venueType": venueType == null ? [] : List<dynamic>.from(venueType!.map((x) => x.toJson())),
     "foodPreferences": foodPreferences == null ? [] : List<dynamic>.from(foodPreferences!.map((x) => x.toJson())),
     "specialRequirements": specialRequirements,
-    "note": note,
+    "notes": notes,
   };
 }
 

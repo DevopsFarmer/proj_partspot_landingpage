@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:partyspot/module/home/data/models/events_meta.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/module/self_hosted_party/presentation/controller/part_selection_controller.dart';
 import 'package:partyspot/module/self_hosted_party/presentation/widgets/selection_item.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';

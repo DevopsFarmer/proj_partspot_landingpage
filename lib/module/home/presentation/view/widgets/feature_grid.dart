@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:partyspot/module/home/data/models/events_meta.dart';
+import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/routes/routes_const.dart' show Routes, RoutesArgument;
 import 'package:partyspot/utils/classes/app_text_styles.dart' show AppTextStyles;
 import 'package:partyspot/utils/constants/app_enums.dart';
