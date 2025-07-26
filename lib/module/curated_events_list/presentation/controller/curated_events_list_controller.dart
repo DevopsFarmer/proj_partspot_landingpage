@@ -45,11 +45,6 @@ class CuratedEventsListController extends BaseController {
   }
 
   Future<void> fetchCuratedEvents({int page = 1, bool loadMore = false}) async {
-    // try {
-    //   setBusy(true);
-    //   final res = await _curatedEventsListRepository.getCuratedParties(eventId: eventId);
-    //   curatedParties = res?.data ?? [];
-
     if (!hasMoreData) return;
 
     try {

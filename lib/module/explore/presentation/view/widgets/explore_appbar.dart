@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:partyspot/module/explore/view/widgets/explore_text_field.dart';
+import 'package:partyspot/module/explore/presentation/view/widgets/explore_text_field.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/icon_constants.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';

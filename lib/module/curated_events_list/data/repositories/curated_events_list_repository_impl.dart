@@ -9,7 +9,7 @@ import 'package:partyspot/utils/services/part_spot_api_service.dart';
 class CuratedEventsRepositoryImpl extends PartySportApiService implements CuratedEventsListRepository {
   @override
   Future<CuratedPartyListResponse?> getCuratedParties({required String? eventId,int? page,int? limit}) async{
-    final response = await getRequest('${ApiUrl.eventsGet}/$eventId');
+    final response = await getRequest('${ApiUrl.eventsGet}/$eventId',queryParams: {"page": page, "limit": limit});
     return CuratedPartyListResponse.fromJson(response.data);
   }
 

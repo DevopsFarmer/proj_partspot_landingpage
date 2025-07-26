@@ -8,6 +8,8 @@ import 'package:partyspot/module/bookings/data/repositories/my_booking_repositor
 import 'package:partyspot/module/bookings/domain/repositories/my_booking_repository.dart';
 import 'package:partyspot/module/curated_events_list/data/repositories/curated_events_list_repository_impl.dart';
 import 'package:partyspot/module/curated_events_list/domain/repositories/curated_events_list_repository.dart';
+import 'package:partyspot/module/explore/data/repositories/explore_repository_impl.dart';
+import 'package:partyspot/module/explore/domain/repositories/explore_repository.dart';
 import 'package:partyspot/module/home/data/repositories/home_repository_impl.dart';
 import 'package:partyspot/module/home/domain/repositories/home_repository.dart';
 import 'package:partyspot/module/login/data/auth_repository_impl.dart';
@@ -46,6 +48,7 @@ _setupRepo(){
   locator.registerLazySingleton<CuratedEventsListRepository>(()=>CuratedEventsRepositoryImpl());
   locator.registerLazySingleton<SettingRepository>(()=>SettingRepositoryImpl());
   locator.registerLazySingleton<AppEntryRepository>(()=>AppEntryRepositoryImpl());
+  locator.registerLazySingleton<ExploreRepository>(()=>ExploreRepositoryImpl());
 }
 
 class MyApp extends StatelessWidget {

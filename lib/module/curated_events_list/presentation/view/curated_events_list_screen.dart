@@ -6,7 +6,6 @@ import 'package:partyspot/routes/routes_const.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart' show AppColor;
 import 'package:partyspot/utils/constants/icon_constants.dart';
-import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/widgets/custom_image_asset.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 import 'package:partyspot/utils/widgets/loading_events_shimmer.dart';
@@ -87,7 +86,7 @@ class CuratedEventsListScreen extends StatelessWidget {
                               onTap: (){
                                 Get.toNamed(Routes.curatedEventInfoScreen,arguments: {RoutesArgument.curatedPartyInfo: curatedEventsListController.curatedParties[index]});
                               },
-                              image: AppImages.curatedPartyFeatureImage,
+                              image: curatedEventsListController.curatedParties[index]?.image,
                             );
                           },
                         );

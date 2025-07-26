@@ -5,11 +5,15 @@ import 'package:partyspot/utils/constants/color_consts.dart';
 class PriceRangeSlider extends StatefulWidget {
   final String? title;
   final Function(double min, double max)? onChanged;
+  final double? initialMin;
+  final double? initialMax;
 
   const PriceRangeSlider({
     super.key,
     this.title,
     this.onChanged,
+    this.initialMin,
+    this.initialMax,
   });
 
   @override
@@ -17,7 +21,16 @@ class PriceRangeSlider extends StatefulWidget {
 }
 
 class _PriceRangeSliderState extends State<PriceRangeSlider> {
-  RangeValues _selectedRange = const RangeValues(2000, 8000);
+  late RangeValues _selectedRange;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedRange = RangeValues(
+      widget.initialMin ?? 2000,
+      widget.initialMax ?? 8000,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +46,7 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
         ),
         const SizedBox(height: 16),
         SliderTheme(
-          data:  SliderThemeData(
+          data: SliderThemeData(
             overlayShape: SliderComponentShape.noOverlay,
           ),
           child: RangeSlider(
@@ -50,12 +63,8 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                 _selectedRange = values;
               });
 
-              // Callback to parent
               if (widget.onChanged != null) {
-                widget.onChanged!(
-                  values.start,
-                  values.end,
-                );
+                widget.onChanged!(values.start, values.end);
               }
             },
           ),

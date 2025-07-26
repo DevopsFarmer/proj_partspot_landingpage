@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:partyspot/module/app_entry/presentation/controller/app_entry_controller.dart';
 import 'package:partyspot/module/bookings/presentation/view/booking_bottom_sheet.dart';
+import 'package:partyspot/module/explore/presentation/view/explore_screen.dart';
 
-import 'package:partyspot/module/explore/view/explore_screen.dart';
 import 'package:partyspot/module/home/presentation/view/home_screen.dart';
 import 'package:partyspot/module/party_spot_vip/view/vip_screen.dart';
 import 'package:partyspot/module/settings/presentation/view/settings_screen.dart';

@@ -8,6 +8,8 @@ import 'package:partyspot/module/curated_events_list/presentation/view/curated_e
 import 'package:partyspot/module/event_info/binding/curated_event_info_binding.dart';
 import 'package:partyspot/module/event_info/presentation/curated_event_info_screen.dart';
 import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
+import 'package:partyspot/module/explore/presentation/binding/explore_binding.dart';
+import 'package:partyspot/module/explore/presentation/view/explore_screen.dart';
 import 'package:partyspot/module/plan_a_wedding/data/models/plan_event_response.dart';
 import 'package:partyspot/module/profile/binding/profile_binding.dart';
 import 'package:partyspot/module/profile/binding/user_detail_binding.dart';
@@ -23,8 +25,6 @@ import 'package:partyspot/module/settings/presentation/binding/settings_binding.
 import 'package:partyspot/module/settings/presentation/view/settings_screen.dart';
 import 'package:partyspot/module/vip_plans/binding/beast_binding.dart';
 import 'package:partyspot/module/vip_plans/view/beast_plan.dart';
-import 'package:partyspot/module/explore/binding/explore_binding.dart';
-import 'package:partyspot/module/explore/view/explore_screen.dart';
 import 'package:partyspot/module/login/presentation/binding/login_binding.dart';
 import 'package:partyspot/module/login/presentation/view/login_screen.dart';
 import 'package:partyspot/module/login/presentation/view/otp_screen.dart';

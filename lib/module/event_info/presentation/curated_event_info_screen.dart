@@ -16,7 +16,7 @@ import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/app_drop_down.dart';
 import 'package:partyspot/utils/widgets/back_button.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
-import 'package:partyspot/utils/widgets/custom_image_asset.dart';
+import 'package:partyspot/utils/widgets/custom_network_image.dart';
 import 'package:partyspot/utils/widgets/loader.dart';
 
 import '../../plan_a_wedding/data/models/plan_event_response.dart';
@@ -54,9 +54,9 @@ class EventInfoScreen extends StatelessWidget {
                           children: [
                             SizedBox(
                               height: 375.spH,
-                              child: CustomImageAsset(
-                                fit: BoxFit.cover,
-                                image: 'assets/images/jpg/curated_party_dummy_thumnail.jpg',
+                              child: CustomNetworkImage(
+                                boxFit: BoxFit.cover,
+                                imageUrl: curatedEventList?.image,
                               ),
                             ),
                             Positioned(

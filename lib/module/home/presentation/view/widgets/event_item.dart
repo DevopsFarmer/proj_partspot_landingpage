@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
-import 'package:partyspot/utils/constants/image_consts.dart' show AppImages;
-import 'package:partyspot/utils/widgets/custom_image_asset.dart';
+import 'package:partyspot/utils/widgets/custom_network_image.dart';
 
 class EventItem extends StatelessWidget {
   final Function()? onTap;
@@ -25,9 +24,9 @@ class EventItem extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                CustomImageAsset(
-                  fit: BoxFit.fitWidth,
-                  image: image ?? AppImages.popularEventImage1,
+                CustomNetworkImage(
+                  boxFit: BoxFit.fitWidth,
+                  imageUrl: image,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
