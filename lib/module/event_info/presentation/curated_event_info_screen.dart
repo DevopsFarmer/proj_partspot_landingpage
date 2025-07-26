@@ -54,6 +54,7 @@ class EventInfoScreen extends StatelessWidget {
                           children: [
                             SizedBox(
                               height: 375.spH,
+                              width: double.infinity,
                               child: CustomNetworkImage(
                                 boxFit: BoxFit.cover,
                                 imageUrl: curatedEventList?.image,
