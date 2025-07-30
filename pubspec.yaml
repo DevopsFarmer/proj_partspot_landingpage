@@ -52,7 +52,7 @@ dependencies:
   easy_localization: ^3.0.7+1
   firebase_core: ^3.13.1
   google_sign_in: ^6.3.0
-  firebase_messaging: ^15.2.6
+  firebase_messaging: ^15.2.9
   percentify: ^1.0.3
   percentages_with_animation: ^1.1.1
   flutter_secure_storage: ^9.2.4
@@ -60,6 +60,7 @@ dependencies:
   url_launcher: ^6.3.0
   image_picker: ^1.1.2
   image_cropper: ^9.1.0
+  flutter_local_notifications: ^19.3.0
 
 dev_dependencies:
   flutter_test:

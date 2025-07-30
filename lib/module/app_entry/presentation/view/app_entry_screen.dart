@@ -14,6 +14,8 @@ import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
 import 'package:partyspot/utils/widgets/loader.dart';
 
+import '../../bookings/presentation/view/widgets/my_plan_header.dart'
+    show MyPlanHeader;
 
 class AppEntryScreen extends StatelessWidget {
   AppEntryScreen({super.key});
@@ -36,6 +38,7 @@ class AppEntryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.requestNotificationIfNeeded();
     return SafeArea(
       child: GetBuilder<AppEntryController>(
         builder: (controller) {
