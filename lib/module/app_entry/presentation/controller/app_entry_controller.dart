@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:partyspot/module/app_entry/domain/app_entry_repository.dart';
 import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
@@ -42,5 +43,28 @@ class AppEntryController extends BaseController{
       setBusy(false);
       update();
     }
+  }
+
+  bool hasRequestedNotification = false;
+
+  void requestNotificationIfNeeded() async {
+    if (!hasRequestedNotification) {
+      hasRequestedNotification = true;
+      await requestUserNotificationPermission();
+    }
+    final messaging = FirebaseMessaging.instance;
+    final token = await messaging.getToken();
+    if (token != null) {
+      print('🎯 FCM Token: $token');
+    }
+  }
+
+  Future<void> requestUserNotificationPermission() async {
+    final messaging = FirebaseMessaging.instance;
+    final settings = await messaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
   }
 }
