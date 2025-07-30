@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
 import 'package:partyspot/module/app_entry/presentation/controller/app_entry_controller.dart';
 import 'package:partyspot/module/explore/domain/repositories/explore_repository.dart';
@@ -17,6 +18,7 @@ class ExploreController extends BaseController {
   final ExploreRepository _exploreRepository = locator<ExploreRepository>();
   final AppEntryController _appEntryController = Get.find<AppEntryController>();
 
+  Timer? _debounce;
 
   final Rxn<PartyTheme?> _partyTheme = Rxn<PartyTheme?>();
   PartyTheme? get partyTheme => _partyTheme.value;
@@ -41,6 +43,23 @@ class ExploreController extends BaseController {
   set month(Map<String, dynamic>? val) {
     _month.value = val;
   }
+
+  final Rxn<String?> _searchKey = Rxn<String?>();
+  String? get searchKey => _searchKey.value;
+  set searchKey(String? val) {
+    _searchKey.value = val;
+  }
+
+  onChangedSearch(String val){
+    searchKey = '';
+    update();
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () async{
+      searchKey = val;
+      resetAndFetchCuratedEvents();
+    });
+  }
+
 
 
   List<String> areaList = [
@@ -127,6 +146,7 @@ class ExploreController extends BaseController {
       final res = await _exploreRepository.getEvents(
         eventType: eventType,
         page: page,
+        searchKey: searchKey,
         limit: _pageLimit,
         minPrice: minPrice,
         maxPrice: maxPrice,
