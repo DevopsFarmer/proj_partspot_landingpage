@@ -1,26 +1,36 @@
 {
   "project_info": {
-    "project_number": "983633691528",
-    "project_id": "partyspot-85ffe",
-    "storage_bucket": "partyspot-85ffe.firebasestorage.app"
+    "project_number": "739174236154",
+    "project_id": "partyspot-a68fb",
+    "storage_bucket": "partyspot-a68fb.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:983633691528:android:4acbd5ef741d773682703d",
+        "mobilesdk_app_id": "1:739174236154:android:db2311b4ba689a0f98ae43",
         "android_client_info": {
           "package_name": "com.app.partyspot.partyspot"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "739174236154-hpvci0foaee4fmm8a03qoqaprojgfo2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDWniKz9yI8P-mO50dlv-DpnQeshebFtJ8"
+          "current_key": "AIzaSyA6ij6LnozE8qioDggLjtO8tkCFFoShGGs"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739174236154-hpvci0foaee4fmm8a03qoqaprojgfo2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

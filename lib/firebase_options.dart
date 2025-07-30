@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDWniKz9yI8P-mO50dlv-DpnQeshebFtJ8',
-    appId: '1:983633691528:android:4acbd5ef741d773682703d',
-    messagingSenderId: '983633691528',
-    projectId: 'partyspot-85ffe',
-    storageBucket: 'partyspot-85ffe.firebasestorage.app',
+    apiKey: 'AIzaSyA6ij6LnozE8qioDggLjtO8tkCFFoShGGs',
+    appId: '1:739174236154:android:db2311b4ba689a0f98ae43',
+    messagingSenderId: '739174236154',
+    projectId: 'partyspot-a68fb',
+    storageBucket: 'partyspot-a68fb.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBqVf5lryjaU9ZMHcyqo7HoDKwDbSZ0rkA',
-    appId: '1:983633691528:ios:b453c0d6df2a665382703d',
-    messagingSenderId: '983633691528',
-    projectId: 'partyspot-85ffe',
-    storageBucket: 'partyspot-85ffe.firebasestorage.app',
+    apiKey: 'AIzaSyBbeu5Om7vd56CzlLNanVjgGH70-6wwUBg',
+    appId: '1:739174236154:ios:5ac026781f8715d198ae43',
+    messagingSenderId: '739174236154',
+    projectId: 'partyspot-a68fb',
+    storageBucket: 'partyspot-a68fb.firebasestorage.app',
     iosBundleId: 'com.app.partyspot.partyspot',
   );
 }

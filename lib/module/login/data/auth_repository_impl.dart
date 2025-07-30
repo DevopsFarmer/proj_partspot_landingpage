@@ -22,7 +22,7 @@ class AuthRepositoryImpl extends PartySportApiService
       data: {
         'provider': provider,
         'id_token': idToken,
-        if (pushToken?.isNotEmpty ?? false) 'device_token': pushToken,
+        if (pushToken?.isNotEmpty ?? false) 'deviceToken': pushToken,
       },
     );
     return LoginResponse.fromJson(response.data);
@@ -62,7 +62,7 @@ class AuthRepositoryImpl extends PartySportApiService
         'code': code,
         'phone': phoneNumber,
         'otp': otp,
-        // if(pushToken?.isNotEmpty ?? false) 'device_token': pushToken,
+        if(pushToken?.isNotEmpty ?? false) 'deviceToken': pushToken,
       },
     );
     return LoginResponse.fromJson(response.data);
