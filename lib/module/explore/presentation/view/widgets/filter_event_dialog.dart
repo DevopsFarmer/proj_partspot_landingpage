@@ -41,13 +41,13 @@ class FilterDialogWidget extends StatelessWidget {
               ),
 
               _buildSectionTitle(StringConsts.area),
-              Obx(
-                () => _buildChips(
-                  controller.areaList,
-                  controller.selectedArea,
-                  allowMultiple: true,
-                ),
-              ),
+              // Obx(
+              //   () => _buildChips(
+              //     controller.areaList,
+              //     controller.selectedArea,
+              //     allowMultiple: true,
+              //   ),
+              // ),
 
               const SizedBox(height: 16,),
               PriceRangeSlider(
@@ -92,7 +92,7 @@ class FilterDialogWidget extends StatelessWidget {
                   StringConsts.apply,
                   onPressed: () {
                     Get.back();
-                    controller.resetAndFetchFollowers();
+                    controller.resetAndFetchCuratedEvents();
                   },
                   height: 50,
                   padding: EdgeInsets.symmetric(vertical: 12),
@@ -101,6 +101,19 @@ class FilterDialogWidget extends StatelessWidget {
                   ),
                   backgroundColor: AppColor.buttonOrange,
                 ),
+              ),
+              AppButton(
+                StringConsts.clear,
+                onPressed: () {
+                  Get.back();
+                  controller.clearFilter();
+                },
+                height: 50,
+                padding: EdgeInsets.symmetric(vertical: 12),
+                textStyle: AppTextStyles.get14BoldTextStyle(
+                  color: AppColor.whiteColor,
+                ),
+                backgroundColor: AppColor.greyColor,
               ),
             ],
           ),

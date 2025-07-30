@@ -12,6 +12,7 @@ import 'package:partyspot/utils/constants/color_consts.dart' show AppColor;
 import 'package:partyspot/utils/constants/icon_constants.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
+import 'package:partyspot/utils/widgets/loader.dart';
 
 
 class AppEntryScreen extends StatelessWidget {
@@ -38,6 +39,9 @@ class AppEntryScreen extends StatelessWidget {
     return SafeArea(
       child: GetBuilder<AppEntryController>(
         builder: (controller) {
+          if(controller.isBusy){
+            return CircularLoader();
+          }
           return Scaffold(
             body: Stack(
               children: [

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:partyspot/module/app_entry/data/models/events_meta.dart';
+import 'package:partyspot/module/app_entry/presentation/controller/app_entry_controller.dart';
 import 'package:partyspot/module/explore/domain/repositories/explore_repository.dart';
 import 'package:partyspot/networking/model/error_response_model.dart';
 import 'package:partyspot/utils/classes/base_controller.dart';
+import 'package:partyspot/utils/constants/app_enums.dart';
 import 'package:partyspot/utils/constants/service_const.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
 
@@ -12,6 +15,7 @@ import '../../../curated_events_list/data/models/curated_event_list_response.dar
 class ExploreController extends BaseController {
 
   final ExploreRepository _exploreRepository = locator<ExploreRepository>();
+  final AppEntryController _appEntryController = Get.find<AppEntryController>();
 
 
   final Rxn<PartyTheme?> _partyTheme = Rxn<PartyTheme?>();
@@ -63,25 +67,6 @@ class ExploreController extends BaseController {
   ];
 
 
-
-
-  RxList<String> selectedArea = <String>[].obs;
-  RxList<String> selectedPrice = <String>[].obs;
-  RxList<String> selectedTheme = <String>[].obs;
-  RxnString selectedMonth = RxnString();
-
-  void setData({
-    required List<String> area,
-    required List<String> price,
-    required List<String> theme,
-    required List<String> monthList,
-  }) {
-    areaList = area;
-    // priceList = price;
-    // themeList = theme;
-    // months = monthList;
-  }
-
   void toggleSelection(
     List<String> selectedList,
     String value, {
@@ -97,18 +82,6 @@ class ExploreController extends BaseController {
       selectedList.clear();
       selectedList.add(value);
     }
-    update();
-  }
-
-  void setMonth(String? value) {
-    selectedMonth.value = value;
-  }
-
-  void clearAll() {
-    selectedArea.clear();
-    selectedPrice.clear();
-    selectedTheme.clear();
-    selectedMonth.value = null;
     update();
   }
 
@@ -148,13 +121,17 @@ class ExploreController extends BaseController {
       setErrorMessage('');
       if (!loadMore) setBusy(true);
 
+      String eventType =  _appEntryController.eventMetaData?.eventType?.firstWhere((e) => e.name?.toLowerCase().replaceAll(" ", "") == EventTypes.curatedParties.name.toLowerCase()).id ?? '';
+      print('EVENT TYPE: $eventType');
+
       final res = await _exploreRepository.getEvents(
+        eventType: eventType,
         page: page,
         limit: _pageLimit,
         minPrice: minPrice,
         maxPrice: maxPrice,
         month: month?["index"],
-        themeName: partyTheme?.id
+        themeId: partyTheme?.id
       );
 
       if (res != null && res.data != null) {
@@ -183,9 +160,20 @@ class ExploreController extends BaseController {
     }
   }
 
-  void resetAndFetchFollowers() {
+  void resetAndFetchCuratedEvents() {
     _currentPage = 1;
     hasMoreData = true;
+    _curatedParties.clear();
+    fetchCuratedEvents();
+  }
+
+  void clearFilter() {
+    _currentPage = 1;
+    hasMoreData = true;
+    partyTheme = null;
+    minPrice = null;
+    maxPrice = null;
+    month = null;
     _curatedParties.clear();
     fetchCuratedEvents();
   }
