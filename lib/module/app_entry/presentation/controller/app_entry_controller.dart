@@ -27,6 +27,7 @@ class AppEntryController extends BaseController{
   void onInit() {
     super.onInit();
     getMetaData();
+    FirebaseMessaging.instance.subscribeToTopic('all_users');
   }
 
   Future<void> getMetaData({void Function()? onSuccess}) async {
