@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
+import 'package:partyspot/utils/utility.dart';
+import 'package:partyspot/utils/widgets/custom_image_asset.dart';
 import 'package:partyspot/utils/widgets/custom_network_image.dart';
 
 class EventItem extends StatelessWidget {
@@ -8,7 +10,8 @@ class EventItem extends StatelessWidget {
   final String? title;
   final String? desc;
   final String? image;
-  const EventItem({super.key,this.onTap,required this.title,required this.desc,this.image});
+  final Widget? suffixWidget;
+  const EventItem({super.key,this.onTap,required this.title,required this.desc,this.image,this.suffixWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +27,13 @@ class EventItem extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                CustomNetworkImage(
+                Utility.isNetworkImage(image)
+                    ? CustomNetworkImage(
                   boxFit: BoxFit.fitWidth,
                   imageUrl: image,
+                ) : CustomImageAsset(
+                  fit: BoxFit.fitWidth,
+                  image: image,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -53,7 +60,7 @@ class EventItem extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: Text(
+                        child: suffixWidget ??  Text(
                           "See more >",
                           style: AppTextStyles.get12MediumTextStyle(
                             color: AppColor.whiteColor,

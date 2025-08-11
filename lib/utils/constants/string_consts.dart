@@ -288,4 +288,5 @@ class StringConsts {
   static const enterNotesHere = "Enter notes here...";
   static const selectTheme = "Select theme";
   static const clear = "Clear";
+  static const allSetText = '''All Set!\nWe have received your list of requirements,\n\nOur Representative will contact you within 12 hours.''';
 }

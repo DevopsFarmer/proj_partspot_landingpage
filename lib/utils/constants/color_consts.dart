@@ -96,4 +96,5 @@ class AppColor {
   static var shimmerHighlightColor = Colors.grey[100]!;
   static const backgroundGrey = Color(0xFFF0F0F0);
   static const quickSilver = Color(0xFF9A9A9B);
+  static const borderColor = Color(0xFFCBCBCB);
 }

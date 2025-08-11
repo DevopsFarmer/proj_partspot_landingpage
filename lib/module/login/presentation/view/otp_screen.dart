@@ -111,12 +111,12 @@ class OtpScreen extends StatelessWidget {
                                   if ((user?.fullName?.isEmpty ?? true) ||
                                       (user?.gender?.isEmpty ?? true) ||
                                       (user?.dob == null)){
-                                    Get.offNamed(
+                                    Get.offAllNamed(
                                       Routes.userDetailScreen,
                                       arguments: {RoutesArgument.fromEdit: false},
                                     );
                                   }else{
-                                    Get.offNamed(
+                                    Get.offAllNamed(
                                       Routes.appEntryScreen,
                                     );
                                   }

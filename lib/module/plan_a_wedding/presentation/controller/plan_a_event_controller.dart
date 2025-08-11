@@ -113,7 +113,7 @@ class PlanAEventController extends BaseController{
       setErrorMessage(StringConsts.pleaseSelectVenue);
     }else if(selectedFoodPreferences.isEmpty){
       setErrorMessage(StringConsts.pleaseSelectFoodPreference);
-    }else if(selectedEndDate?.isBefore(selectedStartDate ?? DateTime.now()) ?? true){
+    }else if(selectedEndDate != null && (selectedEndDate?.isBefore(selectedStartDate ?? DateTime.now()) ?? false)){
       setErrorMessage(StringConsts.endDateCannotBeBeforeStartDate);
     }else{
       try {

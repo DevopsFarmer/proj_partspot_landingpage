@@ -5,6 +5,7 @@ import 'package:partyspot/module/home/presentation/view/widgets/event_item.dart'
 import 'package:partyspot/module/plan_a_wedding/data/models/plan_event_response.dart';
 import 'package:partyspot/routes/routes_const.dart';
 import 'package:partyspot/utils/classes/app_text_styles.dart';
+import 'package:partyspot/utils/constants/app_enums.dart';
 import 'package:partyspot/utils/constants/color_consts.dart';
 import 'package:partyspot/utils/constants/image_consts.dart';
 import 'package:partyspot/utils/constants/string_consts.dart';
@@ -58,7 +59,7 @@ class BookingScreen extends StatelessWidget {
                   onTap: (){
                     Get.toNamed(Routes.representativeScreen,arguments: {RoutesArgument.assignedAgent: AssignedAgent.fromJson(bookingController.bookingList[index]?.agent?.toJson() ?? {})});
                     },
-                  image: bookingController.bookingList[index]?.event?.name?.name == 'wedding' ? AppImages.planAWeddingFeatureImage : null,
+                  image: bookingController.bookingList[index]?.event?.name?.name?.toLowerCase() == EventTypes.wedding.name ? AppImages.planAWeddingFeatureImage : null,
                 );
               },
             );

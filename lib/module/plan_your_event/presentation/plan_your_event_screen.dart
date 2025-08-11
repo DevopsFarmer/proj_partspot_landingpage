@@ -16,6 +16,7 @@ import 'package:partyspot/utils/constants/string_consts.dart';
 import 'package:partyspot/utils/widgets/app_text_field.dart';
 import 'package:partyspot/utils/widgets/buttons.dart';
 import 'package:partyspot/utils/widgets/custom_svg_picture.dart';
+import 'package:partyspot/utils/widgets/dialogs.dart';
 import 'package:path/path.dart' as p;
 
 class PlanYourEventScreen extends StatelessWidget {
@@ -47,7 +48,7 @@ class PlanYourEventScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: AppColor.orangeColor,
+                      color: AppColor.borderColor,
                       width: 2,
                     ),
                   ),
@@ -90,7 +91,7 @@ class PlanYourEventScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: AppColor.orangeColor,
+                      color: AppColor.borderColor,
                       width: 2,
                     ),
                   ),
@@ -123,7 +124,7 @@ class PlanYourEventScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: AppColor.orangeColor,
+                    color: AppColor.borderColor,
                     width: 2,
                   ),
                 ),
@@ -175,7 +176,7 @@ class PlanYourEventScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: AppColor.orangeColor,
+                    color: AppColor.borderColor,
                     width: 2,
                   ),
                 ),
@@ -231,7 +232,7 @@ class PlanYourEventScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: AppColor.orangeColor,
+                    color: AppColor.borderColor,
                     width: 2,
                   ),
                 ),
@@ -283,7 +284,7 @@ class PlanYourEventScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: AppColor.orangeColor,
+                    color: AppColor.borderColor,
                     width: 2,
                   ),
                 ),
@@ -309,7 +310,7 @@ class PlanYourEventScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: AppColor.orangeColor,
+                    color: AppColor.borderColor,
                     width: 2,
                   ),
                 ),
@@ -357,8 +358,13 @@ class PlanYourEventScreen extends StatelessWidget {
               AppButton(StringConsts.submit, onPressed: (){
                 planAEventController.submit(
                   (bookingData) {
-                    Get.until((route) => route.settings.name == Routes.appEntryScreen);
-                    Get.toNamed(Routes.representativeScreen,arguments: {RoutesArgument.assignedAgent: bookingData?.assignedAgent});
+                    Future.microtask((){
+                      Get.dialog(EventBookedSuccessDialog(
+                        onDone: (){
+                          Get.until((route) => route.settings.name == Routes.appEntryScreen);
+                        },
+                      ),barrierDismissible: false);
+                    });
                   },
                 );
               },backgroundColor: AppColor.violet,),

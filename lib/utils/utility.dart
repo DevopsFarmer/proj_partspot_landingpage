@@ -18,6 +18,10 @@ class Utility {
     }
   }
 
+  static bool isNetworkImage(String? path) {
+    return (path?.startsWith('http://') ?? false) || (path?.startsWith('https://') ?? false);
+  }
+
 
 // static Future<void> launchToUrl(String url) async {
   //   final canLaunch = await canLaunchUrl(Uri.parse(url));

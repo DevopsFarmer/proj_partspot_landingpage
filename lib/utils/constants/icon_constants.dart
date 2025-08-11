@@ -27,4 +27,5 @@ class AppIcons {
   static const guestIcon = 'assets/icons/svg/guest_ic.svg';
   static const locationIcon = 'assets/icons/svg/location_ic.svg';
   static const infoIcon = 'assets/icons/svg/info_ic.svg';
+  static const popperIcon = 'assets/icons/png/popper_icon.png';
 }
